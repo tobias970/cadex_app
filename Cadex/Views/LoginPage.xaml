@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:vm="clr-namespace:Cadex.ViewModels" x:Class="Cadex.Views.LoginPage" Title="{Binding Title}">
+    <ContentPage.BindingContext>
+        <vm:LoginViewModel />
+    </ContentPage.BindingContext>
+    <StackLayout>
+            <Label Text="Login" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" FontSize="Large" FontAttributes="Bold"/>
+            <Label x:Name="fejl" Text="ERROR: Check username or password" TextColor="Red" HorizontalTextAlignment="Center" IsVisible="false"/>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Username" Margin="0,5,-105,10" HorizontalOptions="CenterAndExpand"/>
+                <Entry x:Name="username" Text="" Margin="0,0,10,10" HorizontalOptions="CenterAndExpand" MaxLength="15" WidthRequest="110" Placeholder="Username" Keyboard="Default"/>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" >
+                <Label Text="Password" Margin="0,5,-105,10" HorizontalOptions="CenterAndExpand"/>
+                <Entry x:Name="password" Text="" Margin="0,0,10,10" HorizontalOptions="CenterAndExpand" MaxLength="15" WidthRequest="110" Placeholder="Password" Keyboard="Default" IsPassword="true"/>
+            </StackLayout>
+            <Button x:Name="login" Text="Login" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" BorderWidth="1" WidthRequest="70" TextColor="Black"/>
+    </StackLayout>
+</ContentPage>
