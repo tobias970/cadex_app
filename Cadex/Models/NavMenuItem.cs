@@ -9,6 +9,10 @@ namespace Cadex
     public enum MenuItemType
     {
         Home,
+        Products,
+        News,
+        ManProducts,
+        ManNews,
         Login,
         About
     }

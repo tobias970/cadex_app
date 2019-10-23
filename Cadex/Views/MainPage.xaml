@@ -4,7 +4,7 @@
         <!-- Place new controls here -->
         <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
             <Label Text="STARTING" HorizontalOptions="CenterAndExpand" VerticalOptions="Center"/>
-            <Button x:Name="next" Text="START" HorizontalOptions="CenterAndExpand" VerticalOptions="Center" Pressed="Start"/>
+            <Button x:Name="next" Text="START" HorizontalOptions="CenterAndExpand" VerticalOptions="Center"/>
         </StackLayout>
     </StackLayout>
 </ContentPage>

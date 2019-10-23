@@ -16,6 +16,7 @@ namespace Cadex
         protected override void OnStart()
         {
             // Handle when your app starts
+            Application.Current.MainPage = new Nav();
         }
 
         protected override void OnSleep()

@@ -24,15 +24,15 @@ namespace Cadex
             menuItems = new List<NavMenuItem>
             {
                 new NavMenuItem {Id = MenuItemType.Home, Title="Home" },
+                new NavMenuItem {Id = MenuItemType.Products, Title="Products" },
+                new NavMenuItem {Id = MenuItemType.News, Title="News" },
+                new NavMenuItem {Id = MenuItemType.ManProducts, Title="Man Products" },
+                new NavMenuItem {Id = MenuItemType.ManNews, Title="Man News" },
                 new NavMenuItem {Id = MenuItemType.Login, Title="Login" }
             };
 
             MenuItemsListView.ItemsSource = menuItems;
-
             MenuItemsListView.SelectedItem = menuItems[0];
-
-            Console.WriteLine("MenuItems : " + menuItems[0].Id);
-            
 
             MenuItemsListView.ItemSelected += async (sender, e) =>
             {

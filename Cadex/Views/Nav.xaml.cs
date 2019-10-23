@@ -35,6 +35,18 @@ namespace Cadex
                     case (int)MenuItemType.Home:
                         MenuPages.Add(id, new NavigationPage(new MainPage()));
                         break;
+                    case (int)MenuItemType.Products:
+                        MenuPages.Add(id, new NavigationPage(new ListProductsPage()));
+                        break;
+                    case (int)MenuItemType.News:
+                        MenuPages.Add(id, new NavigationPage(new ListNewsPage()));
+                        break;
+                    case (int)MenuItemType.ManProducts:
+                        MenuPages.Add(id, new NavigationPage(new ManProductsPage()));
+                        break;
+                    case (int)MenuItemType.ManNews:
+                        MenuPages.Add(id, new NavigationPage(new ManNewsPage()));
+                        break;
                     case (int)MenuItemType.Login:
                         MenuPages.Add(id, new NavigationPage(new LoginPage()));
                         break;

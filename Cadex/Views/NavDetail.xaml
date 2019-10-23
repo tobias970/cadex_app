@@ -1,9 +1,36 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:vm="clr-namespace:Cadex.ViewModels" x:Class="Cadex.NavDetail" Title="{Binding Title}">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:vm="clr-namespace:Cadex.ViewModels" x:Class="Cadex.NavDetail" Title="{Binding Title}" BackgroundColor="DeepSkyBlue">
     <ContentPage.BindingContext>
         <vm:HomeViewModel />
     </ContentPage.BindingContext>
-    <StackLayout Padding="10">
-        <Label Text="This is a detail page. To get the 'triple' line icon on each platform add a icon to each platform and update the 'Master' page with an Icon that references it." />
-    </StackLayout>
+    <ScrollView>
+        <StackLayout>
+            <Image  Source="Assets/cadex_logo.png" VerticalOptions="Fill" HorizontalOptions="Fill" Margin="20,20,20,30"/>
+                
+            <StackLayout HorizontalOptions="CenterAndExpand">
+                <Frame HorizontalOptions="CenterAndExpand" Margin="1,10,1,10" WidthRequest="350" HasShadow="False" BorderColor="Black" CornerRadius="30">
+                    <Label Text="Dette er en test tjekker bare om det virker. asfdasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdf"/>
+                </Frame>
+
+                <Frame Padding="0" HorizontalOptions="CenterAndExpand" WidthRequest="270" Margin="0,50,0,0">
+                    <Image  Source="Assets/cadex_virksomhed.jpg" WidthRequest="300" VerticalOptions="Fill" HorizontalOptions="Fill"/>
+                </Frame>
+                <Frame OutlineColor="Black" HorizontalOptions="CenterAndExpand" Margin="0,50,0,0">
+                    <Label Text="Kontaktoplysninger" />
+                </Frame>
+                <Frame Padding="10" HorizontalOptions="CenterAndExpand" WidthRequest="260" Margin="0,5,0,0" HasShadow="False" OutlineColor="Black">
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Tlf :"/>
+                        <Label x:Name="telefon" Text="Test"/>
+                    </StackLayout>
+                </Frame>
+                <Frame Padding="10" HorizontalOptions="CenterAndExpand" WidthRequest="260" Margin="0,0,0,20" HasShadow="False" OutlineColor="Black">
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Mail :"/>
+                        <Label x:Name="mail" Text="Test"/>
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
 </ContentPage>

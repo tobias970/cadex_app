@@ -135,5 +135,6 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Assets\cadex_logo.png" />
+    <BundleResource Include="Assets\cadex_virksomhed.jpg" />
   </ItemGroup>
 </Project>

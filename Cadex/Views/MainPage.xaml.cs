@@ -16,13 +16,14 @@ namespace Cadex
         public MainPage()
         {
             InitializeComponent();
+
             Application.Current.MainPage = new Nav();
         }
-        void Start(object sender, System.EventArgs e)
+        /*void Start(object sender, System.EventArgs e)
         {
             Application.Current.MainPage = new Nav();
             //throw new NotImplementedException();
-        }
+        }*/
     }
     
 }

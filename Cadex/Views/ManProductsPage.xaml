@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:vm="clr-namespace:Cadex.ViewModels" x:Class="Cadex.Views.ManProductsPage" Title="{Binding Title}" BackgroundColor="#009EDE">
+    <ContentPage.BindingContext>
+        <vm:ManProductsViewModel />
+    </ContentPage.BindingContext>
+    <ScrollView>
+        <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Margin="0,30,0,0">
+            <Button x:Name="opretproduct" Text="Add Product" FontSize="Large" BorderWidth="1" WidthRequest="200" HeightRequest="70" Margin="0,0,0,50" TextColor="Black" BackgroundColor="White"/>
+            <Button x:Name="retproduct" Text="Edit Product" FontSize="Large" BorderWidth="1" WidthRequest="200" HeightRequest="70" Margin="0,0,0,50" TextColor="Black" BackgroundColor="White"/>
+            <Button x:Name="deleteproduct" Text="Delete Product" FontSize="Large" BorderWidth="1" WidthRequest="200" HeightRequest="70" Margin="0,0,0,50" TextColor="Black" BackgroundColor="White"/>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
