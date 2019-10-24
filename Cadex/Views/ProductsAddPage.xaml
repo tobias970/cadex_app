@@ -1,22 +1,24 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Cadex.Views.ProductsAddPage">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Cadex.Views.ProductsAddPage" BackgroundColor="SkyBlue">
     <StackLayout>
         <StackLayout HorizontalOptions="CenterAndExpand" Margin="0,70,0,0">
         <Label Text="Add Products" FontSize="Title"/>
         </StackLayout>
-        <StackLayout Orientation="Horizontal" Margin="0,50,0,20">
-            <Label Text="Product Title :" Margin="0,8,-85,0" HorizontalOptions="CenterAndExpand"/>
-            <Entry x:Name="producttitle" Text="" Margin="0,0,10,10" HorizontalOptions="CenterAndExpand" MaxLength="15" WidthRequest="160" Placeholder="Title" Keyboard="Default"/> 
-        </StackLayout>
-        <Label Text="Description :" Margin="0,0,0,0" HorizontalOptions="CenterAndExpand"/>
-        <Entry x:Name="desc" Text="" Margin="0,0,0,0" HorizontalOptions="CenterAndExpand" MaxLength="15" WidthRequest="300" HeightRequest="150" VerticalTextAlignment="Start" Placeholder="Description" Keyboard="Default"/>
+        <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+            <StackLayout Orientation="Horizontal" Margin="0,50,0,20">
+                <Label Text="News Title :" Margin="0,0,0,10" HorizontalOptions="CenterAndExpand" FontSize="18" VerticalTextAlignment="Center"/>
+                <Entry x:Name="newstitle" Text="" Margin="0,0,10,10" HorizontalOptions="CenterAndExpand" MaxLength="15" WidthRequest="160" Placeholder="Title" Keyboard="Default"/> 
+            </StackLayout>
+            <Label Text="Description :" Margin="0,0,0,0" HorizontalOptions="CenterAndExpand" FontSize="18"/>
+            <Entry x:Name="desc" Text="" Margin="0,0,0,0" HorizontalOptions="CenterAndExpand" MaxLength="15" WidthRequest="300" HeightRequest="150" VerticalTextAlignment="Start" Placeholder="Description" Keyboard="Default"/>
         <StackLayout Orientation="Horizontal" Margin="0,0,0,50">
-            <Label Text="Price :" Margin="0,8,-85,0" HorizontalOptions="CenterAndExpand"/>
-            <Entry x:Name="pris" Text="" Margin="0,0,10,10" HorizontalOptions="CenterAndExpand" MaxLength="15" WidthRequest="110" Placeholder="Price" Keyboard="Numeric"/>    
+                <Label Text="Price :" Margin="0,8,-85,0" HorizontalOptions="CenterAndExpand" FontSize="18"/>
+                <Entry x:Name="pris" Text="" Margin="0,0,10,10" HorizontalOptions="CenterAndExpand" MaxLength="15" WidthRequest="110" Placeholder="Price" Keyboard="Numeric"/>    
+            </StackLayout>
+            <Button Text="Add" BorderColor="Black" BorderWidth="1" HorizontalOptions="CenterAndExpand" WidthRequest="150" TextColor="Black" BackgroundColor="White"/>
         </StackLayout>
-        <Button Text="Add" BorderColor="Black" BorderWidth="1" HorizontalOptions="CenterAndExpand" WidthRequest="150" TextColor="Black"/>
         <StackLayout Margin="0,0,0,60" VerticalOptions="EndAndExpand">
-            <Button Text="Home" BorderColor="Black" BorderWidth="1" HorizontalOptions="CenterAndExpand" WidthRequest="150" TextColor="Black" Pressed="Button_NavBack_Pressed"/>
+            <Button Text="Home" BorderColor="Black" BorderWidth="1" HorizontalOptions="CenterAndExpand" WidthRequest="150" TextColor="Black" Pressed="Button_NavBack_Pressed" BackgroundColor="White"/>
         </StackLayout>
     </StackLayout>
 </ContentPage>

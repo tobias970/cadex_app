@@ -1,9 +1,55 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Cadex.Views.ProductsEditPage">
-    <StackLayout>
-        <Label Text="Edit Products"/>
-        <StackLayout Margin="0,0,0,60" VerticalOptions="EndAndExpand">
-            <Button Text="Home" BorderColor="Black" BorderWidth="1" HorizontalOptions="CenterAndExpand" WidthRequest="150" TextColor="Black" Pressed="Button_NavBack_Pressed"/>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Cadex.Views.ProductsEditPage" BackgroundColor="SkyBlue">
+    <ScrollView>
+        <StackLayout>
+            <StackLayout HorizontalOptions="CenterAndExpand" Margin="0,70,0,0">
+            <Label Text="Edit Products" FontSize="Title"/>
+            </StackLayout>
+            <StackLayout Margin="30,30,30,30">
+                <Frame Margin="0,0,0,30">
+                    <StackLayout>
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Margin="0,0,0,20">
+                            <Button Text="Edit" BorderWidth="1" WidthRequest="70" TextColor="Black"/>
+                            <Button Text="Save" BorderWidth="1" WidthRequest="70" TextColor="Black"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                            <Label Text="Title : " VerticalTextAlignment="Center"/>
+                            <Entry Placeholder="Title"/>
+                        </StackLayout>
+                        <StackLayout HorizontalOptions="CenterAndExpand">
+                            <Label Text="Description : " VerticalTextAlignment="Center"/>
+                            <Entry Text="" Margin="0,0,0,0" HorizontalOptions="CenterAndExpand" MaxLength="15" WidthRequest="300" HeightRequest="150" VerticalTextAlignment="Start" Placeholder="Description" Keyboard="Default"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                            <Label Text="Price : " VerticalTextAlignment="Center"/>
+                            <Entry Text="" HorizontalOptions="CenterAndExpand" MaxLength="15" WidthRequest="110" Placeholder="Price" Keyboard="Numeric"/>
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>
+                <Frame>
+                    <StackLayout>
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Margin="0,0,0,20">
+                            <Button Text="Edit" BorderWidth="1" WidthRequest="70" TextColor="Black"/>
+                            <Button Text="Save" BorderWidth="1" WidthRequest="70" TextColor="Black"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                            <Label Text="Title : " VerticalTextAlignment="Center"/>
+                            <Entry Placeholder="Title"/>
+                        </StackLayout>
+                        <StackLayout HorizontalOptions="CenterAndExpand">
+                            <Label Text="Description : " VerticalTextAlignment="Center"/>
+                            <Entry Text="" Margin="0,0,0,0" HorizontalOptions="CenterAndExpand" MaxLength="15" WidthRequest="300" HeightRequest="150" VerticalTextAlignment="Start" Placeholder="Description" Keyboard="Default"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                            <Label Text="Price : " VerticalTextAlignment="Center"/>
+                            <Entry Text="" HorizontalOptions="CenterAndExpand" MaxLength="15" WidthRequest="110" Placeholder="Price" Keyboard="Numeric"/>
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+            <StackLayout Margin="0,0,0,60" VerticalOptions="EndAndExpand">
+                <Button Text="Home" BorderColor="Black" BorderWidth="1" HorizontalOptions="CenterAndExpand" WidthRequest="150" TextColor="Black" Pressed="Button_NavBack_Pressed" BackgroundColor="White"/>
+            </StackLayout>
         </StackLayout>
-    </StackLayout>
+    </ScrollView>
 </ContentPage>
