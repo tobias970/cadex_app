@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Cadex.Views.NewsAddPage" Title="Add News">
+    <StackLayout>
+        <StackLayout HorizontalOptions="CenterAndExpand" Margin="0,70,0,0">
+        <Label Text="Add News" FontSize="Title"/>
+        </StackLayout>
+        <StackLayout Orientation="Horizontal" Margin="0,50,0,20">
+            <Label Text="News Title :" Margin="0,8,-85,0" HorizontalOptions="CenterAndExpand"/>
+            <Entry x:Name="newstitle" Text="" Margin="0,0,10,10" HorizontalOptions="CenterAndExpand" MaxLength="15" WidthRequest="160" Placeholder="Title" Keyboard="Default"/> 
+        </StackLayout>
+        <Label Text="Description :" Margin="0,0,0,0" HorizontalOptions="CenterAndExpand"/>
+        <Entry x:Name="desc" Text="" Margin="0,0,0,0" HorizontalOptions="CenterAndExpand" MaxLength="15" WidthRequest="300" HeightRequest="150" VerticalTextAlignment="Start" Placeholder="Description" Keyboard="Default"/>
+       
+        <Button Text="Add" BorderColor="Black" BorderWidth="1" HorizontalOptions="CenterAndExpand" WidthRequest="150" TextColor="Black" Margin="0,30,0,0"/>
+        <StackLayout Margin="0,0,0,60" VerticalOptions="EndAndExpand">
+            <Button Text="Home" BorderColor="Black" BorderWidth="1" HorizontalOptions="CenterAndExpand" WidthRequest="150" TextColor="Black" Pressed="Button_NavBack_Pressed"/>
+        </StackLayout>
+    </StackLayout>
+</ContentPage>

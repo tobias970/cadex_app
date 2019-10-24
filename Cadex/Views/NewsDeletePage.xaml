@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Cadex.Views.NewsDeletePage">
+    <StackLayout>
+        <StackLayout HorizontalOptions="CenterAndExpand" Margin="0,70,0,0">
+        <Label Text="Delete News" FontSize="Title"/>
+        </StackLayout>
+        <StackLayout Margin="10,40,10,0">
+            <Frame Padding="10" HorizontalOptions="CenterAndExpand" WidthRequest="260" Margin="0,5,0,0" HasShadow="False" OutlineColor="Black">
+                <StackLayout Orientation="Horizontal">
+                    <Button Text="Slet" BorderColor="Black" BorderWidth="1" WidthRequest="70" TextColor="Black"/>
+                    <Label Text="Ny chef" VerticalTextAlignment="Center" HorizontalOptions="EndAndExpand"/>
+                </StackLayout>
+            </Frame>
+            <Frame Padding="10" HorizontalOptions="CenterAndExpand" WidthRequest="260" Margin="0,5,0,0" HasShadow="False" OutlineColor="Black">
+                <StackLayout Orientation="Horizontal">
+                    <Button Text="Slet" BorderColor="Black" BorderWidth="1" WidthRequest="70" TextColor="Black"/>
+                    <Label Text="Ny chef" VerticalTextAlignment="Center" HorizontalOptions="EndAndExpand"/>
+                </StackLayout>
+            </Frame>
+        </StackLayout>
+        <StackLayout Margin="0,0,0,60" VerticalOptions="EndAndExpand">
+            <Button Text="Home" BorderColor="Black" BorderWidth="1" HorizontalOptions="CenterAndExpand" WidthRequest="150" TextColor="Black" Pressed="Button_NavBack_Pressed"/>
+        </StackLayout>
+    </StackLayout>
+</ContentPage>

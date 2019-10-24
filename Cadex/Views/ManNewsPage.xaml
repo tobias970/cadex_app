@@ -5,9 +5,9 @@
     </ContentPage.BindingContext>
     <ScrollView>
         <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Margin="0,30,0,0">
-            <Button x:Name="opretnews" Text="Add News" FontSize="Large" BorderWidth="1" WidthRequest="200" HeightRequest="70" Margin="0,0,0,50" TextColor="Black" BackgroundColor="White"/>
-            <Button x:Name="retnews" Text="Edit News" FontSize="Large" BorderWidth="1" WidthRequest="200" HeightRequest="70" Margin="0,0,0,50" TextColor="Black" BackgroundColor="White"/>
-            <Button x:Name="deletenews" Text="Delete News" FontSize="Large" BorderWidth="1" WidthRequest="200" HeightRequest="70" Margin="0,0,0,50" TextColor="Black" BackgroundColor="White"/>
+            <Button x:Name="opretnews" Text="Add News" FontSize="Large" BorderWidth="1" WidthRequest="200" HeightRequest="70" Margin="0,0,0,50" TextColor="Black" BackgroundColor="White" Pressed="Button_AddNews_Pressed"/>
+            <Button x:Name="retnews" Text="Edit News" FontSize="Large" BorderWidth="1" WidthRequest="200" HeightRequest="70" Margin="0,0,0,50" TextColor="Black" BackgroundColor="White" Pressed="Button_EditNews_Pressed"/>
+            <Button x:Name="deletenews" Text="Delete News" FontSize="Large" BorderWidth="1" WidthRequest="200" HeightRequest="70" Margin="0,0,0,50" TextColor="Black" BackgroundColor="White" Pressed="Button_DeleteNews_Pressed"/>
         </StackLayout>
     </ScrollView>
 </ContentPage>
