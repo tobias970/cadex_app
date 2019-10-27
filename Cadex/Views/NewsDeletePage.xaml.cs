@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using System.Diagnostics;
 using Xamarin.Forms;
 
 namespace Cadex.Views
@@ -17,21 +17,29 @@ namespace Cadex.Views
         {
             Application.Current.MainPage = new Nav();
         }
+        
+        async void OnAlertYesNoClicked(object sender, EventArgs e)
+        {
+            bool answer = await DisplayAlert("Delete", "Are you sure you want to delete this?", "Yes", "No");
+            Debug.WriteLine("Answer: " + answer);
+
+            if (answer == true)
+            {
+                Console.WriteLine("Slet denne");
+                //Kald metode som sletter news
+                Button btn = (Button)sender;
+                Console.WriteLine("Her : " + btn.ClassId);
+            }
+        }
+
         public void GenerateElements()
         {
-            /*
-            <Frame Padding="10" HorizontalOptions="CenterAndExpand" WidthRequest="260" Margin="0,5,0,0" HasShadow="False" OutlineColor="Black">
-                    <StackLayout Orientation="Horizontal">
-                        <Button Text="Slet" BorderColor="Black" BorderWidth="1" WidthRequest="70" TextColor="Black" Margin="0,0,10,0"/>
-                        <Label Text="Ny chef" VerticalTextAlignment="Center" HorizontalOptions="StartAndExpand"/>
-                    </StackLayout>
-                </Frame>
-             */
 
-            int i = 0;
+            int i = 1;
+           
             while (i < 10)
             {
-
+                
                 StackLayout alt = new StackLayout()
                 {
                     Orientation = StackOrientation.Horizontal,
@@ -44,7 +52,12 @@ namespace Cadex.Views
                     WidthRequest = 70,
                     TextColor = Color.Black,
                     Margin = new Thickness(0, 0, 10, 0),
+                    ClassId = i.ToString(),    
                 };
+                
+                knap.Clicked += OnAlertYesNoClicked;
+                
+
                 Label titel = new Label()
                 {
                     Text = "Ny chef",

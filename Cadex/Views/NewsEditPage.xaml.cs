@@ -17,26 +17,10 @@ namespace Cadex.Views
         {
             Application.Current.MainPage = new Nav();
         }
+
+
         public void GenerateElements()
         {
-            /*
-            <Frame Margin="0,0,0,30">
-                    <StackLayout>
-                        <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Margin="0,0,0,20">
-                            <Button Text="Edit" BorderWidth="1" WidthRequest="70" TextColor="Black"/>
-                            <Button Text="Save" BorderWidth="1" WidthRequest="70" TextColor="Black"/>
-                        </StackLayout>
-                        <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
-                            <Label Text="Title : " VerticalTextAlignment="Center"/>
-                            <Entry Placeholder="Title" WidthRequest="170"/>
-                        </StackLayout>
-                        <StackLayout HorizontalOptions="CenterAndExpand">
-                            <Label Text="Description : " VerticalTextAlignment="Center"/>
-                            <Entry Text="" Margin="0,0,0,0" HorizontalOptions="CenterAndExpand" MaxLength="15" WidthRequest="300" HeightRequest="150" VerticalTextAlignment="Start" Placeholder="Description" Keyboard="Default"/>
-                        </StackLayout>
-                    </StackLayout>
-                </Frame>
-*/
 
             int i = 0;
             while (i < 10)
@@ -124,6 +108,7 @@ namespace Cadex.Views
                     Content = alt,
                 };
                 stack.Children.Add(ramme);
+
 
                 i++;
             }
