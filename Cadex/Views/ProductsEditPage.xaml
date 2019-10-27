@@ -8,7 +8,8 @@
             <StackLayout HorizontalOptions="CenterAndExpand" Margin="0,30,0,0">
             <Label Text="Edit Products" FontSize="Title"/>
             </StackLayout>
-            <StackLayout Margin="30,30,30,30">
+            <StackLayout x:Name="stack" Margin="30,30,30,30">
+                <!--
                 <Frame Margin="0,0,0,30">
                     <StackLayout>
                         <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Margin="0,0,0,20">
@@ -49,6 +50,7 @@
                         </StackLayout>
                     </StackLayout>
                 </Frame>
+                -->
             </StackLayout>
         </StackLayout>
     </ScrollView>

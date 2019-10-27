@@ -4,8 +4,9 @@
         <vm:ListNewsViewModel />
     </ContentPage.BindingContext>
     <ScrollView>
-        <StackLayout>
+        <StackLayout x:Name="stack">
             <Label Text="Company News" HorizontalOptions="CenterAndExpand" FontSize="Title" Margin="0,30,0,30"/>
+            <!--
             <Frame OutlineColor="Black" HorizontalOptions="CenterAndExpand" Margin="10,0,10,25" HasShadow="False" WidthRequest="300">
                 <StackLayout>
                     <Label Text="Ny Chef" FontSize="Subtitle"/>
@@ -18,6 +19,7 @@
                     <Label Text="Håber i bliver glade for den nye chef. Han glæder sig til sin første arbejdsdag d. 1 december. PS han tager kage med."/>
                 </StackLayout>
             </Frame>
+            -->
         </StackLayout>
     </ScrollView>
 </ContentPage>

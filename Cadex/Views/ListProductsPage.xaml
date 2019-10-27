@@ -4,8 +4,28 @@
         <vm:ListProductsViewModel />
     </ContentPage.BindingContext>
     <ScrollView>
-        <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-            <Label Text="Cars For Sale" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" FontSize="Title" Margin="0,30,0,30"/>
+        <StackLayout x:Name="stack" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+            <Label x:Name="test" Text="Cars For Sale" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" FontSize="Title" Margin="0,30,0,30"/>
+            <!--
+            <Grid x:Name="gridlayout" HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand">
+            <Frame OutlineColor="Black" HorizontalOptions="CenterAndExpand" Margin="10,0,10,30" HasShadow="False">
+                <StackLayout>
+                    <ScrollView Orientation="Horizontal">
+                        <StackLayout Orientation="Horizontal">
+                            <Image Source="Assets/cadex_virksomhed.jpg"/>
+                            <Image Source="Assets/cadex_logo.png"/>
+                        </StackLayout>
+                    </ScrollView>
+                    <Label Text="Ford Focus RS 500" FontSize="Subtitle"/>
+                    <Label Text="Denne Ford focus er utrolig god og har en top hastighed på 300 km/t. Den er desuden udstyret med nogle gode sæder som giver en god komfort."/>
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                        <Label Text="Pris :"/>
+                        <Label Text="500.000kr"/>
+                    </StackLayout>
+                </StackLayout>
+            </Frame>
+            </Grid>-->
+            <!--
             <Frame OutlineColor="Black" HorizontalOptions="CenterAndExpand" Margin="10,0,10,30" HasShadow="False">
                 <StackLayout>
                     <ScrollView Orientation="Horizontal">
@@ -38,6 +58,7 @@
                     </StackLayout>
                 </StackLayout>
             </Frame>
+            -->
         </StackLayout>
     </ScrollView>
 </ContentPage>
