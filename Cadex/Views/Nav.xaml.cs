@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,6 +20,20 @@ namespace Cadex
         public Nav()
         {
             InitializeComponent();
+
+            Console.WriteLine("NAV LAVET");
+
+            
+                var answer = DisplayAlert("Sikker usømmelig omgang med App", "Er du sikker på du vil starte denne App?", "Yes", "No");
+                Debug.WriteLine("Answer: " + answer);
+
+               /* if (answer == true)
+                {
+                    Console.WriteLine("Slet denne");
+                    //Kald metode som sletter news
+                }*/
+            
+
 
             MasterBehavior = MasterBehavior.Popover;
 
@@ -49,6 +64,9 @@ namespace Cadex
                         break;
                     case (int)MenuItemType.Login:
                         MenuPages.Add(id, new NavigationPage(new LoginPage()));
+                        break;
+                    case (int)MenuItemType.Logout:
+                        MenuPages.Add(id, new NavigationPage(new LogoutPage()));
                         break;
                 }
             }

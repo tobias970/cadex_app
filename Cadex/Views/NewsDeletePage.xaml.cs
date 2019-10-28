@@ -11,8 +11,10 @@ namespace Cadex.Views
         {
             InitializeComponent();
 
+            Console.WriteLine("Starter slet news");
             GenerateElements();
         }
+
         void Button_NavBack_Pressed(object sender, System.EventArgs e)
         {
             Application.Current.MainPage = new Nav();

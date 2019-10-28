@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using Cadex.Services;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -21,7 +22,7 @@ namespace Cadex
         {
             InitializeComponent();
 
-            menuItems = new List<NavMenuItem>
+            /*menuItems = new List<NavMenuItem>
             {
                 new NavMenuItem {Id = MenuItemType.Home, Title="Home" },
                 new NavMenuItem {Id = MenuItemType.Products, Title="Products" },
@@ -29,7 +30,8 @@ namespace Cadex
                 new NavMenuItem {Id = MenuItemType.ManProducts, Title="Man Products" },
                 new NavMenuItem {Id = MenuItemType.ManNews, Title="Man News" },
                 new NavMenuItem {Id = MenuItemType.Login, Title="Login" }
-            };
+            };*/
+            menuItems = CreateMavMenu();
 
             MenuItemsListView.ItemsSource = menuItems;
             MenuItemsListView.SelectedItem = menuItems[0];
@@ -47,6 +49,33 @@ namespace Cadex
             };
 
             
+        }
+
+        private List<NavMenuItem> CreateMavMenu()
+        {
+            if (AppSession.login)
+            {
+                menuItems = new List<NavMenuItem>
+                {
+                    new NavMenuItem {Id = MenuItemType.Home, Title="Home" },
+                    new NavMenuItem {Id = MenuItemType.Products, Title="Products" },
+                    new NavMenuItem {Id = MenuItemType.News, Title="News" },
+                    new NavMenuItem {Id = MenuItemType.ManProducts, Title="Man Products" },
+                    new NavMenuItem {Id = MenuItemType.ManNews, Title="Man News" },
+                    new NavMenuItem {Id = MenuItemType.Logout, Title="Logout" } //Lav logud side
+                };
+            }
+            else
+            {
+                menuItems = new List<NavMenuItem>
+                {
+                    new NavMenuItem {Id = MenuItemType.Home, Title="Home" },
+                    new NavMenuItem {Id = MenuItemType.Products, Title="Products" },
+                    new NavMenuItem {Id = MenuItemType.Login, Title="Login" }
+                };
+            }
+
+            return menuItems;
         }
     }
 }

@@ -14,6 +14,7 @@ namespace Cadex
         ManProducts,
         ManNews,
         Login,
+        Logout,
         About
     }
     public class NavMenuItem

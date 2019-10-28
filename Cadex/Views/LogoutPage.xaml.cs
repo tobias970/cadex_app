@@ -5,16 +5,14 @@ using Xamarin.Forms;
 
 namespace Cadex.Views
 {
-    public partial class NewsAddPage : ContentPage
+    public partial class LogoutPage : ContentPage
     {
-        public NewsAddPage()
+        public LogoutPage()
         {
             InitializeComponent();
 
-            Console.WriteLine(AppSession.login);
-        }
-        void Button_NavBack_Pressed(object sender, System.EventArgs e)
-        {
+            AppSession.login = false;
+
             Application.Current.MainPage = new Nav();
         }
     }
