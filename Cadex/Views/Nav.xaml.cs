@@ -21,20 +21,6 @@ namespace Cadex
         {
             InitializeComponent();
 
-            Console.WriteLine("NAV LAVET");
-
-            
-                var answer = DisplayAlert("Sikker usømmelig omgang med App", "Er du sikker på du vil starte denne App?", "Yes", "No");
-                Debug.WriteLine("Answer: " + answer);
-
-               /* if (answer == true)
-                {
-                    Console.WriteLine("Slet denne");
-                    //Kald metode som sletter news
-                }*/
-            
-
-
             MasterBehavior = MasterBehavior.Popover;
 
             MenuPages.Add((int)MenuItemType.Home, (NavigationPage)Detail);
