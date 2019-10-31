@@ -38,7 +38,7 @@ namespace Cadex.Views
                 };
                 Button knap = new Button()
                 {
-                    Text = "Delete",
+                    Text = "Slet",
                     BorderColor = Color.Black,
                     BorderWidth = 1,
                     WidthRequest = 70,

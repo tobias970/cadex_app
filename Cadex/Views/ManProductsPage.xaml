@@ -5,9 +5,9 @@
     </ContentPage.BindingContext>
     <ScrollView>
         <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Margin="0,30,0,0">
-            <Button x:Name="opretproduct" Text="Add Product" FontSize="Large" BorderWidth="1" WidthRequest="200" HeightRequest="70" Margin="0,0,0,50" TextColor="Black" BackgroundColor="White" Pressed="Button_AddProducts_Pressed"/>
-            <Button x:Name="retproduct" Text="Edit Product" FontSize="Large" BorderWidth="1" WidthRequest="200" HeightRequest="70" Margin="0,0,0,50" TextColor="Black" BackgroundColor="White" Pressed="Button_EditProducts_Pressed"/>
-            <Button x:Name="deleteproduct" Text="Delete Product" FontSize="Large" BorderWidth="1" WidthRequest="200" HeightRequest="70" Margin="0,0,0,50" TextColor="Black" BackgroundColor="White" Pressed="Button_DeleteProducts_Pressed"/>
+            <Button x:Name="opretproduct" Text="Tilføj Produkt" FontSize="Large" BorderWidth="1" WidthRequest="200" HeightRequest="70" Margin="0,0,0,50" TextColor="Black" BackgroundColor="White" Pressed="Button_AddProducts_Pressed"/>
+            <Button x:Name="retproduct" Text="Ret Produkt" FontSize="Large" BorderWidth="1" WidthRequest="200" HeightRequest="70" Margin="0,0,0,50" TextColor="Black" BackgroundColor="White" Pressed="Button_EditProducts_Pressed"/>
+            <Button x:Name="deleteproduct" Text="Slet Produkt" FontSize="Large" BorderWidth="1" WidthRequest="200" HeightRequest="70" Margin="0,0,0,50" TextColor="Black" BackgroundColor="White" Pressed="Button_DeleteProducts_Pressed"/>
         </StackLayout>
     </ScrollView>
 </ContentPage>

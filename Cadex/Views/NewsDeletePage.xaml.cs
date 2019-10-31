@@ -22,7 +22,7 @@ namespace Cadex.Views
         
         async void OnAlertYesNoClicked(object sender, EventArgs e)
         {
-            bool answer = await DisplayAlert("Delete", "Are you sure you want to delete this?", "Yes", "No");
+            bool answer = await DisplayAlert("Slet", "Er du sikker på du vil slette denne?", "Ja", "Nej");
             Debug.WriteLine("Answer: " + answer);
 
             if (answer == true)
@@ -48,7 +48,7 @@ namespace Cadex.Views
                 };
                 Button knap = new Button()
                 {
-                    Text = "Delete",
+                    Text = "Slet",
                     BorderColor = Color.Black,
                     BorderWidth = 1,
                     WidthRequest = 70,

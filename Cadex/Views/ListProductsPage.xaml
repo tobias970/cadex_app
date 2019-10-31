@@ -5,7 +5,7 @@
     </ContentPage.BindingContext>
     <ScrollView>
         <StackLayout x:Name="stack" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-            <Label x:Name="test" Text="Cars For Sale" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" FontSize="Title" Margin="0,30,0,30"/>
+            <Label x:Name="test" Text="Biler til salg" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" FontSize="Title" Margin="0,30,0,30"/>
             <!--
             <Grid x:Name="gridlayout" HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand">
             <Frame OutlineColor="Black" HorizontalOptions="CenterAndExpand" Margin="10,0,10,30" HasShadow="False">

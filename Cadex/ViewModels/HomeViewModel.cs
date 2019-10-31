@@ -5,7 +5,7 @@ namespace Cadex.ViewModels
     {
         public HomeViewModel()
         {
-            Title = "Home";
+            Title = "Hjem";
         }
     }
 }

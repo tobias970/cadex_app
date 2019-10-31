@@ -5,7 +5,7 @@
     </ContentPage.BindingContext>
     <ScrollView>
         <StackLayout x:Name="stack">
-            <Label Text="Company News" HorizontalOptions="CenterAndExpand" FontSize="Title" Margin="0,30,0,30"/>
+            <Label Text="Virksomhedsnyheder" HorizontalOptions="CenterAndExpand" FontSize="Title" Margin="0,30,0,30"/>
             <!--
             <Frame OutlineColor="Black" HorizontalOptions="CenterAndExpand" Margin="10,0,10,25" HasShadow="False" WidthRequest="300">
                 <StackLayout>

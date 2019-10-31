@@ -57,21 +57,21 @@ namespace Cadex
             {
                 menuItems = new List<NavMenuItem>
                 {
-                    new NavMenuItem {Id = MenuItemType.Home, Title="Home" },
-                    new NavMenuItem {Id = MenuItemType.Products, Title="Products" },
-                    new NavMenuItem {Id = MenuItemType.News, Title="News" },
-                    new NavMenuItem {Id = MenuItemType.ManProducts, Title="Man Products" },
-                    new NavMenuItem {Id = MenuItemType.ManNews, Title="Man News" },
-                    new NavMenuItem {Id = MenuItemType.Logout, Title="Logout" } //Lav logud side
+                    new NavMenuItem {Id = MenuItemType.Home, Title="Hjem" },
+                    new NavMenuItem {Id = MenuItemType.Products, Title="Produkter" },
+                    new NavMenuItem {Id = MenuItemType.News, Title="Nyheder" },
+                    new NavMenuItem {Id = MenuItemType.ManProducts, Title="Håndtere Produkter" },
+                    new NavMenuItem {Id = MenuItemType.ManNews, Title="Håndtere Nyheder" },
+                    new NavMenuItem {Id = MenuItemType.Logout, Title="Log ud" } //Lav logud side
                 };
             }
             else
             {
                 menuItems = new List<NavMenuItem>
                 {
-                    new NavMenuItem {Id = MenuItemType.Home, Title="Home" },
-                    new NavMenuItem {Id = MenuItemType.Products, Title="Products" },
-                    new NavMenuItem {Id = MenuItemType.Login, Title="Login" }
+                    new NavMenuItem {Id = MenuItemType.Home, Title="Hjem" },
+                    new NavMenuItem {Id = MenuItemType.Products, Title="Produkter" },
+                    new NavMenuItem {Id = MenuItemType.Login, Title="Log ind" }
                 };
             }
 

@@ -5,7 +5,7 @@ namespace Cadex.ViewModels
     {
         public ListNewsViewModel()
         {
-            Title = "News";
+            Title = "Nyheder";
         }
     }
 }

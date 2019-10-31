@@ -47,14 +47,14 @@ namespace Cadex.Views
             {
                 Button edit = new Button
                 {
-                    Text = "Edit",
+                    Text = "Ret",
                     BorderWidth = 1,
                     WidthRequest = 70,
                     TextColor = Color.Black,
                 };
                 Button save = new Button
                 {
-                    Text = "Save",
+                    Text = "Gem",
                     BorderWidth = 1,
                     WidthRequest = 70,
                     TextColor = Color.Black,
@@ -71,12 +71,12 @@ namespace Cadex.Views
 
                 Label title = new Label
                 {
-                    Text = "Title : ",
+                    Text = "Titel : ",
                     VerticalTextAlignment = TextAlignment.Center,
                 };
                 Entry skrivtitle = new Entry
                 {
-                    Placeholder = "Title",
+                    Placeholder = "Titel",
                     WidthRequest = 170,
                     IsEnabled = false,
                 };
@@ -92,7 +92,7 @@ namespace Cadex.Views
 
                 Label beskrivelse = new Label
                 {
-                    Text = "Description : ",
+                    Text = "Beskrivelse : ",
                     VerticalTextAlignment = TextAlignment.Center,
                 };
                 Entry skrivbeskrivelse = new Entry
@@ -103,7 +103,7 @@ namespace Cadex.Views
                     WidthRequest = 300,
                     HeightRequest = 150,
                     VerticalTextAlignment = TextAlignment.Start,
-                    Placeholder = "Description",
+                    Placeholder = "Beskrivelse",
                     Keyboard = default,
                     IsEnabled = false,
                 };
@@ -122,7 +122,7 @@ namespace Cadex.Views
                  */
                 Label pris = new Label
                 {
-                    Text = "Price : ",
+                    Text = "Pris : ",
                     VerticalTextAlignment = TextAlignment.Center,
                 };
                 Entry prisen = new Entry
@@ -131,7 +131,7 @@ namespace Cadex.Views
                     HorizontalOptions = LayoutOptions.CenterAndExpand,
                     MaxLength = 15,
                     WidthRequest = 110,
-                    Placeholder = "Price",
+                    Placeholder = "Pris",
                     Keyboard = Keyboard.Numeric,
                     IsEnabled = false,
                 };

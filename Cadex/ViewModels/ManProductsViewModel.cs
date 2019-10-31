@@ -5,7 +5,7 @@ namespace Cadex.ViewModels
     {
         public ManProductsViewModel()
         {
-            Title = "Manage Products";
+            Title = "Håndtere Produkter";
         }
     }
 }

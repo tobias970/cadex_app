@@ -1,24 +1,27 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Cadex.Views.ProductsAddPage" BackgroundColor="SkyBlue">
-    <StackLayout>
-        <StackLayout Margin="10,60,0,0" HorizontalOptions="StartAndExpand">
-                <Button Text="Home" BorderColor="Black" BorderWidth="1" HorizontalOptions="CenterAndExpand" WidthRequest="60" TextColor="Black" Pressed="Button_NavBack_Pressed" BackgroundColor="White"/>
+    <ScrollView>
+        <StackLayout>
+            <StackLayout Margin="10,50,0,0" HorizontalOptions="StartAndExpand">
+                    <Button Text="Hjem" BorderColor="Black" BorderWidth="1" HorizontalOptions="CenterAndExpand" WidthRequest="60" TextColor="Black" Pressed="Button_NavBack_Pressed" BackgroundColor="White"/>
             </StackLayout>
-        <StackLayout HorizontalOptions="CenterAndExpand" Margin="0,30,0,0">
-        <Label Text="Add Products" FontSize="Title"/>
+            <!--<StackLayout HorizontalOptions="CenterAndExpand" Margin="0,30,0,0">
+                <Label Text="Tilføj produkter" FontSize="Title"/>
+            </StackLayout>-->
+            <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+                <Label Text="Tilføj produkter" FontSize="Title" HorizontalOptions="CenterAndExpand"/>
+                <StackLayout Orientation="Horizontal" Margin="0,70,0,10">
+                    <Label Text="Produkt titel :" Margin="0,0,0,10" HorizontalOptions="CenterAndExpand" FontSize="18" VerticalTextAlignment="Center"/>
+                    <Entry x:Name="newstitle" Text="" Margin="0,0,10,10" HorizontalOptions="CenterAndExpand" MaxLength="15" WidthRequest="160" Placeholder="Titel" Keyboard="Default"/> 
+                </StackLayout>
+                <Label Text="Beskrivelse :" Margin="0,0,0,0" HorizontalOptions="CenterAndExpand" FontSize="18"/>
+                <Entry x:Name="desc" Text="" Margin="0,0,0,0" HorizontalOptions="CenterAndExpand" MaxLength="15" WidthRequest="300" HeightRequest="150" VerticalTextAlignment="Start" Placeholder="Beskrivelse" Keyboard="Default"/>
+                <StackLayout Orientation="Horizontal" Margin="0,0,0,50">
+                    <Label Text="Pris :" Margin="0,8,-85,0" HorizontalOptions="CenterAndExpand" FontSize="18"/>
+                    <Entry x:Name="pris" Text="" Margin="0,0,10,10" HorizontalOptions="CenterAndExpand" MaxLength="15" WidthRequest="110" Placeholder="Pris" Keyboard="Numeric"/>    
+                </StackLayout>
+                <Button Text="Tilføj" BorderColor="Black" BorderWidth="1" HorizontalOptions="CenterAndExpand" WidthRequest="150" TextColor="Black" BackgroundColor="White"/>
+            </StackLayout>
         </StackLayout>
-        <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
-            <StackLayout Orientation="Horizontal" Margin="0,50,0,20">
-                <Label Text="News Title :" Margin="0,0,0,10" HorizontalOptions="CenterAndExpand" FontSize="18" VerticalTextAlignment="Center"/>
-                <Entry x:Name="newstitle" Text="" Margin="0,0,10,10" HorizontalOptions="CenterAndExpand" MaxLength="15" WidthRequest="160" Placeholder="Title" Keyboard="Default"/> 
-            </StackLayout>
-            <Label Text="Description :" Margin="0,0,0,0" HorizontalOptions="CenterAndExpand" FontSize="18"/>
-            <Entry x:Name="desc" Text="" Margin="0,0,0,0" HorizontalOptions="CenterAndExpand" MaxLength="15" WidthRequest="300" HeightRequest="150" VerticalTextAlignment="Start" Placeholder="Description" Keyboard="Default"/>
-        <StackLayout Orientation="Horizontal" Margin="0,0,0,50">
-                <Label Text="Price :" Margin="0,8,-85,0" HorizontalOptions="CenterAndExpand" FontSize="18"/>
-                <Entry x:Name="pris" Text="" Margin="0,0,10,10" HorizontalOptions="CenterAndExpand" MaxLength="15" WidthRequest="110" Placeholder="Price" Keyboard="Numeric"/>    
-            </StackLayout>
-            <Button Text="Add" BorderColor="Black" BorderWidth="1" HorizontalOptions="CenterAndExpand" WidthRequest="150" TextColor="Black" BackgroundColor="White"/>
-        </StackLayout>
-    </StackLayout>
+    </ScrollView>
 </ContentPage>

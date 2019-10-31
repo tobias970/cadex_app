@@ -3,10 +3,10 @@
     <ScrollView>
         <StackLayout>
             <StackLayout Margin="10,30,0,0" HorizontalOptions="StartAndExpand">
-                <Button Text="Home" BorderColor="Black" BorderWidth="1" HorizontalOptions="CenterAndExpand" WidthRequest="60" TextColor="Black" Pressed="Button_NavBack_Pressed" BackgroundColor="White"/>
+                <Button Text="Hjem" BorderColor="Black" BorderWidth="1" HorizontalOptions="CenterAndExpand" WidthRequest="60" TextColor="Black" Pressed="Button_NavBack_Pressed" BackgroundColor="White"/>
             </StackLayout>
             <StackLayout HorizontalOptions="CenterAndExpand" Margin="0,30,0,0">
-            <Label Text="Edit News" FontSize="Title"/>
+            <Label Text="Ret nyheder" FontSize="Title"/>
             </StackLayout>
             <StackLayout x:Name="stack" Margin="30,30,30,30">
                 <!--
