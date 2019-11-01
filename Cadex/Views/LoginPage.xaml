@@ -8,12 +8,12 @@
             <Label x:Name="fejl" Text="ERROR: Check username or password" TextColor="Red" HorizontalTextAlignment="Center" IsVisible="false"/>
             <StackLayout Orientation="Horizontal">
                 <Label Text="Brugernavn" Margin="0,5,-105,10" HorizontalOptions="CenterAndExpand"/>
-                <Entry x:Name="username" Text="" Margin="0,0,10,10" HorizontalOptions="CenterAndExpand" MaxLength="15" WidthRequest="110" Placeholder="Brugernavn" Keyboard="Default"/>
+                <Entry x:Name="username" Text="" Margin="0,0,10,10" HorizontalOptions="CenterAndExpand" MaxLength="20" WidthRequest="110" Placeholder="Brugernavn" Keyboard="Default"/>
             </StackLayout>
             <StackLayout Orientation="Horizontal" >
                 <Label Text="Kodeord" Margin="0,5,-105,10" HorizontalOptions="CenterAndExpand"/>
-                <Entry x:Name="password" Text="" Margin="0,0,10,10" HorizontalOptions="CenterAndExpand" MaxLength="15" WidthRequest="110" Placeholder="Kodeord" Keyboard="Default" IsPassword="true"/>
+                <Entry x:Name="password" Text="" Margin="0,0,10,10" HorizontalOptions="CenterAndExpand" MaxLength="20" WidthRequest="110" Placeholder="Kodeord" Keyboard="Default" IsPassword="true"/>
             </StackLayout>
-            <Button x:Name="login" Text="Login" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" BorderWidth="1" WidthRequest="70" TextColor="Black"/>
+            <Button x:Name="login" Text="Login" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" BorderWidth="1" WidthRequest="70" TextColor="Black" Pressed="Login_Button_Clicked"/>
     </StackLayout>
 </ContentPage>
