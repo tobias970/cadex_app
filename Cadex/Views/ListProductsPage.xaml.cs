@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using Cadex.Services;
 using Newtonsoft.Json.Linq;
 using Xamarin.Forms;
@@ -13,36 +14,22 @@ namespace Cadex.Views
             InitializeComponent();
 
             GenerateElements();
-            
+           
         }
 
         public void GenerateElements()
         {
-
-            //Frame -> Stacklayout -> Scrollview -> Stacklayout -> Image
-            //Frame -> Stacklayout -> Label
-            //Frame -> Stacklayout -> Label
-            //Frame -> Stacklayout -> Stacklayout -> Label
-            //Frame -> Stacklayout -> Stacklayout -> Label
-
             APIMethods apimetoder = new APIMethods();
-            apimetoder.HentProdukter();
-            JObject result = apimetoder.result;
+            JObject result = (JObject)apimetoder.HentProdukter();
 
             int antalprodukter = (int)result["productCount"];
-            Console.WriteLine("PRODUKTER : " + antalprodukter);
 
-            
-                //Console.WriteLine("NAVN : " + result["products"][i]["name"]);
-                
-            
-
+            //string images = (string)result["products"][0]["images"][0]["image"];
+            //Console.WriteLine("Billede : " + images);
 
             int i = 0;
             while (i < antalprodukter)
             {
-
-
                 Frame ramme = new Frame
                 {
                     HorizontalOptions = LayoutOptions.CenterAndExpand,
@@ -55,19 +42,33 @@ namespace Cadex.Views
                 {
 
                 };
-
-            
+                
                 StackLayout billeder = new StackLayout
                 {
                     Orientation = StackOrientation.Horizontal,
                 };
                 //Loop på denne
-                Image billede = new Image
+
+                
+                if (result["products"][i]["images"].HasValues)
                 {
-                    Source = "Assets/cadex_virksomhed.jpg",
-                };
-            
-                billeder.Children.Add(billede);
+                    string base64String = (string)result["products"][i]["images"][0]["image"];
+                    Console.WriteLine("Billedenr : " + base64String);
+
+                    //Console.WriteLine("BASE64 : " + base64String);
+                    byte[] Base64Stream = Convert.FromBase64String(base64String);
+                    Console.WriteLine("BASE64S : " + Base64Stream);
+
+                    Image billede = new Image
+                    {
+                        Source = ImageSource.FromStream(() => new MemoryStream(Base64Stream)),
+                        WidthRequest = 500,
+                        HeightRequest = 200
+                    };
+
+                    billeder.Children.Add(billede);
+                }
+
 
                 ScrollView Scroller = new ScrollView
                 {

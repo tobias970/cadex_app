@@ -7,11 +7,13 @@ namespace Cadex.Services
 {
     public class APIMethods
     {
+        public JObject result;
+
         public string tempvalue;
         public int[] rumarray;
         public string temperaturvalue;
         public string humidityvalue;
-        public JObject result;
+
 
         public APIMethods()
         {
@@ -51,58 +53,18 @@ namespace Cadex.Services
         }
 
 
-        public void HentProdukter()
+        public object HentProdukter()
         {
-            //string [][]result;
 
-            try
-            {
-                APICustomRequest http = new APICustomRequest("https://api.cadex.dk/");
+            APICustomRequest http = new APICustomRequest("https://api.cadex.dk/");
 
-                //Sender data til følgende API endpoint.
-                JObject json = http.SendData("product/getAll", new { }, Method.GET);
-                //Console.WriteLine(json);
+            //Sender data til følgende API endpoint.
+            JObject json = http.SendData("product/getAll", new { }, Method.GET);
+            //Console.WriteLine(json);
 
-                //result = ()JsonConvert.DeserializeObject(json);
+            result = (JObject)json.SelectToken("result");
 
-                //result = (string)json.SelectToken("result");
-                //Console.WriteLine(result);
-                //string arraystring = JsonConvert.SerializeObject(json, Formatting.Indented);
-                //Console.WriteLine(arraystring);
-                //JArray deserialized = JsonConvert.DeserializeObject<JArray>(arraystring);
-
-                //var result = JsonConvert.DeserializeObject<string[][]>(arraystring);
-                //Console.WriteLine(result[0][1]);
-
-                //Console.WriteLine(deserialized[3, 0] + ", " + deserialized[3, 1]);
-
-                //Finder relevante json data og gemmer det i et array.
-                //result = (string[][])json.SelectToken("result");
-
-                //Console.WriteLine("NAVN : " + result[0][1]);
-
-                result = (JObject)json.SelectToken("result");
-
-                int antalprodukter = (int)result["productCount"];
-                Console.WriteLine("PRODUKTER : " + antalprodukter );
-
-                int i = 0;
-
-                while (i < antalprodukter)
-                {
-                    Console.WriteLine("NAVN : " + result["products"][i]["name"]);
-                    i++;
-                }
-
-
-                //Laver det om til et public int array, som bruges af andre klasser.
-                //navne = navn.ToObject<string[]>();
-
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-            }
+            return result;
         }
 
 
