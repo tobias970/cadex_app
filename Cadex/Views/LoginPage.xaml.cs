@@ -21,14 +21,14 @@ namespace Cadex.Views
         {
             //Oprettelse af objekt til klassen hvor API metoderne er i.
             APIMethods apimetoder = new APIMethods();
-
+            apimetoder.HentProdukter();
             //Henter API token fra en metode i klassen "APIMethods" og sender brugernavn og kodeord til APIen.
             //key = apimetoder.HentNyNoegle(username.Text, password.Text);
 
             //Udskriver noeglen fra APIen.
             //Console.WriteLine(key);
 
-            apimetoder.HentProdukter();
+
 
             //Sover i 2 sekunder for at APIen kan godkende token.
             //System.Threading.Thread.Sleep(2000);

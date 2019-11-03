@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using Cadex.Services;
+using Newtonsoft.Json.Linq;
 using Xamarin.Forms;
 
 namespace Cadex.Views
@@ -23,8 +24,22 @@ namespace Cadex.Views
             //Frame -> Stacklayout -> Label
             //Frame -> Stacklayout -> Stacklayout -> Label
             //Frame -> Stacklayout -> Stacklayout -> Label
+
+            APIMethods apimetoder = new APIMethods();
+            apimetoder.HentProdukter();
+            JObject result = apimetoder.result;
+
+            int antalprodukter = (int)result["productCount"];
+            Console.WriteLine("PRODUKTER : " + antalprodukter);
+
+            
+                //Console.WriteLine("NAVN : " + result["products"][i]["name"]);
+                
+            
+
+
             int i = 0;
-            while (i < 20)
+            while (i < antalprodukter)
             {
 
 
@@ -34,6 +49,7 @@ namespace Cadex.Views
                     HasShadow = false,
                     BorderColor = Color.Black,
                     Margin = new Thickness (10,0,10,30),
+                    WidthRequest = 300,
                 };
                 StackLayout Alt = new StackLayout
                 {
@@ -61,12 +77,12 @@ namespace Cadex.Views
 
                 Label titel = new Label
                 {
-                    Text = "Ford Focus RS 500",
+                    Text = (string)result["products"][i]["name"],
                     FontSize = Device.GetNamedSize (NamedSize.Subtitle, typeof(Label)),
                 };
                 Label beskrivelse = new Label
                 {
-                    Text = "Denne Ford focus er utrolig god og har en top hastighed på 300 km/t. Den er desuden udstyret med nogle gode sæder som giver en god komfort.",
+                    Text = (string)result["products"][i]["description"],
                 };
 
                 StackLayout stackpris = new StackLayout
@@ -81,7 +97,7 @@ namespace Cadex.Views
                 };
                 Label prisen = new Label
                 {
-                    Text = "500.000",
+                    Text = (string)result["products"][i]["price"],
                 };
 
                 stackpris.Children.Add(pris);

@@ -1,4 +1,5 @@
 ﻿using System;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using RestSharp;
 
@@ -10,6 +11,7 @@ namespace Cadex.Services
         public int[] rumarray;
         public string temperaturvalue;
         public string humidityvalue;
+        public JObject result;
 
         public APIMethods()
         {
@@ -51,7 +53,8 @@ namespace Cadex.Services
 
         public void HentProdukter()
         {
-            //string []navne;
+            //string [][]result;
+
             try
             {
                 APICustomRequest http = new APICustomRequest("https://api.cadex.dk/");
@@ -60,15 +63,37 @@ namespace Cadex.Services
                 JObject json = http.SendData("product/getAll", new { }, Method.GET);
                 //Console.WriteLine(json);
 
-                //Finder relevante json data og gemmer det i et array.
-                JArray result = (JArray)json.SelectToken("result");
-                Console.WriteLine("NAVN : " + result[0]["name"]);
+                //result = ()JsonConvert.DeserializeObject(json);
 
-                foreach (var item in result)
+                //result = (string)json.SelectToken("result");
+                //Console.WriteLine(result);
+                //string arraystring = JsonConvert.SerializeObject(json, Formatting.Indented);
+                //Console.WriteLine(arraystring);
+                //JArray deserialized = JsonConvert.DeserializeObject<JArray>(arraystring);
+
+                //var result = JsonConvert.DeserializeObject<string[][]>(arraystring);
+                //Console.WriteLine(result[0][1]);
+
+                //Console.WriteLine(deserialized[3, 0] + ", " + deserialized[3, 1]);
+
+                //Finder relevante json data og gemmer det i et array.
+                //result = (string[][])json.SelectToken("result");
+
+                //Console.WriteLine("NAVN : " + result[0][1]);
+
+                result = (JObject)json.SelectToken("result");
+
+                int antalprodukter = (int)result["productCount"];
+                Console.WriteLine("PRODUKTER : " + antalprodukter );
+
+                int i = 0;
+
+                while (i < antalprodukter)
                 {
-                    Console.WriteLine("Items : " + item["name"]);
-                    Console.WriteLine("Items : " + item["id"]);
+                    Console.WriteLine("NAVN : " + result["products"][i]["name"]);
+                    i++;
                 }
+
 
                 //Laver det om til et public int array, som bruges af andre klasser.
                 //navne = navn.ToObject<string[]>();
