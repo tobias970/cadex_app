@@ -47,28 +47,44 @@ namespace Cadex.Views
                 {
                     Orientation = StackOrientation.Horizontal,
                 };
-                //Loop på denne
 
-                
-                if (result["products"][i]["images"].HasValues)
+                //Indsætter alle billederne for hver produkt i stacklayoutet ovenfor. 
+                int y = 0;
+                foreach (var produktbillede in result["products"][i]["images"])
                 {
-                    string base64String = (string)result["products"][i]["images"][0]["image"];
-                    Console.WriteLine("Billedenr : " + base64String);
+                    if (result["products"][i]["images"].HasValues)
+                    {
+                        string base64String = (string)result["products"][i]["images"][y]["image"];
+                        //Console.WriteLine("Billedenr : " + base64String);
 
-                    //Console.WriteLine("BASE64 : " + base64String);
-                    byte[] Base64Stream = Convert.FromBase64String(base64String);
-                    Console.WriteLine("BASE64S : " + Base64Stream);
+                        //Console.WriteLine("BASE64 : " + base64String);
+                        byte[] Base64Stream = Convert.FromBase64String(base64String);
+                        //Console.WriteLine("BASE64S : " + Base64Stream);
 
+                        Image billede = new Image
+                        {
+                            Source = ImageSource.FromStream(() => new MemoryStream(Base64Stream)),
+                            WidthRequest = 500,
+                            HeightRequest = 200
+                        };
+
+                        billeder.Children.Add(billede);
+                    }
+                    y++;
+                }
+
+                //Hvis produktet ikke har et billede indsætter den et standard billede.
+                if (!result["products"][i]["images"].HasValues)
+                {
                     Image billede = new Image
                     {
-                        Source = ImageSource.FromStream(() => new MemoryStream(Base64Stream)),
+                        Source = "Assets/billedesenere.png",
                         WidthRequest = 500,
                         HeightRequest = 200
                     };
 
                     billeder.Children.Add(billede);
                 }
-
 
                 ScrollView Scroller = new ScrollView
                 {

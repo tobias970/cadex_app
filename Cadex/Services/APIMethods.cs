@@ -59,7 +59,7 @@ namespace Cadex.Services
             APICustomRequest http = new APICustomRequest("https://api.cadex.dk/");
 
             //Sender data til følgende API endpoint.
-            JObject json = http.SendData("product/getAll", new { }, Method.GET);
+            JObject json = http.SendData("product/getAll/img/3", new { }, Method.GET);
             //Console.WriteLine(json);
 
             result = (JObject)json.SelectToken("result");

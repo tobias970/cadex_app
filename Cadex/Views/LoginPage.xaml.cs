@@ -13,15 +13,15 @@ namespace Cadex.Views
         {
             InitializeComponent();
 
-            //AppSession.login = true;
-            //Application.Current.MainPage = new Nav();
+            AppSession.login = true;
+            Application.Current.MainPage = new Nav();
         }
 
         void Login_Button_Clicked(object sender, System.EventArgs e)
         {
             //Oprettelse af objekt til klassen hvor API metoderne er i.
-            APIMethods apimetoder = new APIMethods();
-            apimetoder.HentProdukter();
+            //APIMethods apimetoder = new APIMethods();
+            //apimetoder.HentProdukter();
             //Henter API token fra en metode i klassen "APIMethods" og sender brugernavn og kodeord til APIen.
             //key = apimetoder.HentNyNoegle(username.Text, password.Text);
 
