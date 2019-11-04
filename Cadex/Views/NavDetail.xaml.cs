@@ -13,10 +13,19 @@ namespace Cadex
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class NavDetail : ContentPage
     {
-        public JObject produkter;
+        //public JObject produkter;
         public NavDetail()
         {
             InitializeComponent();
+
+            APIMethods apimetoder = new APIMethods();
+            //JObject result = (JObject)apimetoder.HentVirkInfo();
+            var values = apimetoder.HentVirkInfo();
+
+            infotitle.Text = values.Item1;
+            infodesc.Text = values.Item2;
+            infotlf.Text = values.Item3;
+            infomail.Text = values.Item4;
         }
         
     }

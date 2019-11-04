@@ -8,8 +8,12 @@
             <Image  Source="Assets/cadex_logo.png" VerticalOptions="Fill" HorizontalOptions="Fill" Margin="20,20,20,30"/>
                 
             <StackLayout HorizontalOptions="CenterAndExpand">
+
                 <Frame HorizontalOptions="CenterAndExpand" Margin="1,10,1,10" WidthRequest="350" HasShadow="False" BorderColor="Black" CornerRadius="30">
-                    <Label Text="Dette er en test tjekker bare om det virker. asfdasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdf"/>
+                    <StackLayout>
+                        <Label x:Name="infotitle" Text="Om os" FontSize="Title" HorizontalOptions="CenterAndExpand"/>
+                        <Label x:Name="infodesc" Text="Dette er en test tjekker bare om det virker. asfdasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdf"/>
+                    </StackLayout>
                 </Frame>
 
                 <Frame Padding="0" HorizontalOptions="CenterAndExpand" WidthRequest="270" Margin="0,50,0,0">
@@ -21,13 +25,13 @@
                 <Frame Padding="10" HorizontalOptions="CenterAndExpand" WidthRequest="260" Margin="0,5,0,0" HasShadow="False" OutlineColor="Black">
                     <StackLayout Orientation="Horizontal">
                         <Label Text="Tlf :"/>
-                        <Label x:Name="telefon" Text="Test"/>
+                        <Label x:Name="infotlf" Text="Test"/>
                     </StackLayout>
                 </Frame>
                 <Frame Padding="10" HorizontalOptions="CenterAndExpand" WidthRequest="260" Margin="0,0,0,20" HasShadow="False" OutlineColor="Black">
                     <StackLayout Orientation="Horizontal">
                         <Label Text="Mail :"/>
-                        <Label x:Name="mail" Text="Test"/>
+                        <Label x:Name="infomail" Text="Test"/>
                     </StackLayout>
                 </Frame>
             </StackLayout>
