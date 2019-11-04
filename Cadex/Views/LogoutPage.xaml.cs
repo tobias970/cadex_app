@@ -7,13 +7,17 @@ namespace Cadex.Views
 {
     public partial class LogoutPage : ContentPage
     {
-        public LogoutPage()
+        string key;
+
+        public LogoutPage(string key)
         {
             InitializeComponent();
 
+            this.key = key;
+
             AppSession.login = false;
 
-            Application.Current.MainPage = new Nav();
+            Application.Current.MainPage = new Nav(key);
         }
     }
 }

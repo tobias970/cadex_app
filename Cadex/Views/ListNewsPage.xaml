@@ -11,6 +11,10 @@
                 <StackLayout>
                     <Label Text="Ny Chef" FontSize="Subtitle"/>
                     <Label Text="Håber i bliver glade for den nye chef. Han glæder sig til sin første arbejdsdag d. 1 december. PS han tager kage med."/>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="tola" FontSize="Small" HorizontalOptions="StartAndExpand"/>
+                        <Label Text="04-11-2019" FontSize="Small" HorizontalOptions="EndAndExpand"/>
+                    </StackLayout>
                 </StackLayout>
             </Frame>
             <Frame OutlineColor="Black" HorizontalOptions="CenterAndExpand" Margin="10,0,10,25" HasShadow="False" WidthRequest="300">

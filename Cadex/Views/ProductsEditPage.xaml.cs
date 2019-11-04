@@ -7,15 +7,19 @@ namespace Cadex.Views
 {
     public partial class ProductsEditPage : ContentPage
     {
-        public ProductsEditPage()
+        string key;
+
+        public ProductsEditPage(string key)
         {
             InitializeComponent();
+
+            this.key = key;
 
             GenerateElements();
         }
         void Button_NavBack_Pressed(object sender, System.EventArgs e)
         {
-            Application.Current.MainPage = new Nav();
+            Application.Current.MainPage = new Nav(key);
         }
         public void GenerateElements()
         {

@@ -37,21 +37,46 @@ namespace Cadex.Services
             //Oprettelse af https request til API'en.
             APICustomRequest http = new APICustomRequest("https://api.cadex.dk/");
 
-            Console.WriteLine("Data : " + data);
             //Sender data til følgende API endpoint.
             JObject json = http.SendData("auth/authenticate", data, Method.POST);
 
-            Console.WriteLine("Json : " + json);
+            Console.WriteLine(json);
 
             //Finder relevante json data og gemmer det i en variabel.
-            key = (string)json.SelectToken("token");
+            result = (JObject)json.SelectToken("result");
 
-            Console.WriteLine("Key : " + key);
+            Console.WriteLine("result : " + result);
 
+            key = (string)result["token"];
+
+            Console.WriteLine("key : " + key);
+
+
+            validatekey(key);
+
+            
             //Retunere noeglen.
             return key;
         }
 
+        public void validatekey(string key)
+        {
+            Console.WriteLine("TOKENVALID : " + key);
+            //Den nye temperatur som sendes til APIen.
+            var data = new
+            {
+                token = key
+            };
+
+            Console.WriteLine("DATA : " + data);
+
+            APICustomRequest http = new APICustomRequest("https://api.cadex.dk/");
+
+            //Sender data til følgende API endpoint.
+            JObject json = http.SendData("auth/validate", data, Method.POST);
+            Console.WriteLine("VALID : " + json);
+
+        }
 
         public object HentProdukter()
         {
@@ -67,6 +92,19 @@ namespace Cadex.Services
             return result;
         }
 
+        public object Hentnyheder(string token)
+        {
+
+            APICustomRequest http = new APICustomRequest("https://api.cadex.dk/");
+
+            //Sender data til følgende API endpoint.
+            JObject json = http.SendData("news/getAll", new { }, Method.GET, token);
+            //Console.WriteLine(json);
+
+            result = (JObject)json.SelectToken("result");
+
+            return result;
+        }
 
 
 

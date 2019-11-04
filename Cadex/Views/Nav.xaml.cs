@@ -16,10 +16,13 @@ namespace Cadex
     public partial class Nav : MasterDetailPage
     {
         Dictionary<int, NavigationPage> MenuPages = new Dictionary<int, NavigationPage>();
+        string key;
 
-        public Nav()
+        public Nav(string key)
         {
             InitializeComponent();
+
+            this.key = key;
 
             MasterBehavior = MasterBehavior.Popover;
 
@@ -40,19 +43,19 @@ namespace Cadex
                         MenuPages.Add(id, new NavigationPage(new ListProductsPage()));
                         break;
                     case (int)MenuItemType.News:
-                        MenuPages.Add(id, new NavigationPage(new ListNewsPage()));
+                        MenuPages.Add(id, new NavigationPage(new ListNewsPage(key)));
                         break;
                     case (int)MenuItemType.ManProducts:
-                        MenuPages.Add(id, new NavigationPage(new ManProductsPage()));
+                        MenuPages.Add(id, new NavigationPage(new ManProductsPage(key)));
                         break;
                     case (int)MenuItemType.ManNews:
-                        MenuPages.Add(id, new NavigationPage(new ManNewsPage()));
+                        MenuPages.Add(id, new NavigationPage(new ManNewsPage(key)));
                         break;
                     case (int)MenuItemType.Login:
                         MenuPages.Add(id, new NavigationPage(new LoginPage()));
                         break;
                     case (int)MenuItemType.Logout:
-                        MenuPages.Add(id, new NavigationPage(new LogoutPage()));
+                        MenuPages.Add(id, new NavigationPage(new LogoutPage(key)));
                         break;
                 }
             }

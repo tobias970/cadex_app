@@ -7,7 +7,7 @@ namespace Cadex.Views
 {
     public partial class ListNewsPage : ContentPage
     {
-        public ListNewsPage()
+        public ListNewsPage(string key)
         {
             InitializeComponent();
 
@@ -37,6 +37,28 @@ namespace Cadex.Views
 
                 tekster.Children.Add(titel);
                 tekster.Children.Add(beskrivelse);
+
+                StackLayout omnyhed = new StackLayout
+                {
+                    Orientation = StackOrientation.Horizontal
+                };
+
+                Label forfatter = new Label
+                {
+                    Text = "tola",
+                    FontSize = Device.GetNamedSize(NamedSize.Small, typeof(Label)),
+                    HorizontalOptions = LayoutOptions.StartAndExpand,
+                };
+                Label dato = new Label
+                {
+                    Text = "04-11-2019",
+                    FontSize = Device.GetNamedSize(NamedSize.Small, typeof(Label)),
+                    HorizontalOptions = LayoutOptions.EndAndExpand,
+                };
+                omnyhed.Children.Add(forfatter);
+                omnyhed.Children.Add(dato);
+
+                tekster.Children.Add(omnyhed);
 
                 Frame ramme = new Frame
                 {

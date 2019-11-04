@@ -7,9 +7,13 @@ namespace Cadex.Views
 {
     public partial class NewsDeletePage : ContentPage
     {
-        public NewsDeletePage()
+        string key;
+
+        public NewsDeletePage(string key)
         {
             InitializeComponent();
+
+            this.key = key;
 
             Console.WriteLine("Starter slet news");
             GenerateElements();
@@ -17,7 +21,7 @@ namespace Cadex.Views
 
         void Button_NavBack_Pressed(object sender, System.EventArgs e)
         {
-            Application.Current.MainPage = new Nav();
+            Application.Current.MainPage = new Nav(key);
         }
         
         async void OnAlertYesNoClicked(object sender, EventArgs e)

@@ -17,9 +17,9 @@ namespace Cadex
         {
             // Handle when your app starts
 
-            
+            string key = "";
 
-            Application.Current.MainPage = new Nav();
+            Application.Current.MainPage = new Nav(key);
         }
 
         protected override void OnSleep()
