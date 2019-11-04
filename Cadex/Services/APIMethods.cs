@@ -52,7 +52,7 @@ namespace Cadex.Services
             Console.WriteLine("key : " + key);
 
 
-            validatekey(key);
+            //validatekey(key);
 
             
             //Retunere noeglen.
@@ -124,7 +124,26 @@ namespace Cadex.Services
             return result;
         }
 
+        public bool OpretNyhed(string token, string overskrift, string beskrivelse)
+        {
+            //Den nye temperatur som sendes til APIen.
+            var data = new
+            {
+                title = overskrift,
+                content = beskrivelse
+            };
 
+            APICustomRequest http = new APICustomRequest("https://api.cadex.dk/");
+
+            //Sender data til følgende API endpoint.
+            JObject json = http.SendData("news/create", data, Method.POST, token);
+            Console.WriteLine(json);
+
+            bool status = (bool)json.SelectToken("status");
+            Console.WriteLine("STATUSRE : " + status);
+
+            return status;
+        }
 
 
 

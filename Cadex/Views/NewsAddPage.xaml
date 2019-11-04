@@ -8,11 +8,11 @@
             <Label Text="Tilføj nyheder" FontSize="Title" HorizontalOptions="CenterAndExpand"/>
             <StackLayout Orientation="Horizontal" Margin="0,70,0,20">
                 <Label Text="Nyheds titel :" Margin="0,0,0,10" HorizontalOptions="CenterAndExpand" FontSize="18" VerticalTextAlignment="Center"/>
-                <Entry x:Name="newstitle" Text="" Margin="0,0,10,10" HorizontalOptions="CenterAndExpand" MaxLength="15" WidthRequest="160" Placeholder="Titel" Keyboard="Default"/> 
+                <Entry x:Name="newstitle" Text="" Margin="0,0,10,10" HorizontalOptions="CenterAndExpand" MaxLength="15" WidthRequest="160" Placeholder="Titel" Keyboard="Default" /> 
             </StackLayout>
             <Label Text="Beskrivelse :" Margin="0,0,0,0" HorizontalOptions="CenterAndExpand" FontSize="18"/>
-            <Entry x:Name="desc" Text="" Margin="0,0,0,0" HorizontalOptions="CenterAndExpand" MaxLength="15" WidthRequest="300" HeightRequest="150" VerticalTextAlignment="Start" Placeholder="Beskrivelse" Keyboard="Default"/>
-            <Button Text="Tilføj" BorderColor="Black" BorderWidth="1" HorizontalOptions="CenterAndExpand" WidthRequest="150" TextColor="Black" Margin="0,30,0,0" BackgroundColor="White"/>
+            <Entry x:Name="newsdesc" Text="" Margin="0,0,0,0" HorizontalOptions="CenterAndExpand" MaxLength="200" WidthRequest="300" HeightRequest="150" VerticalTextAlignment="Start" Placeholder="Beskrivelse" Keyboard="Default"/>
+            <Button Text="Tilføj" BorderColor="Black" BorderWidth="1" HorizontalOptions="CenterAndExpand" WidthRequest="150" TextColor="Black" Margin="0,30,0,0" BackgroundColor="White" Pressed="Button_OpretNyhed_Pressed"/>
         </StackLayout>
     </StackLayout>
 </ContentPage>

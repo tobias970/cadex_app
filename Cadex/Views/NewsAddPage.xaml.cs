@@ -21,5 +21,20 @@ namespace Cadex.Views
         {
             Application.Current.MainPage = new Nav(key);
         }
+        void Button_OpretNyhed_Pressed(object sender, System.EventArgs e)
+        {
+            if (newstitle.Text != "" && newsdesc.Text != "")
+            {
+                APIMethods apimetoder = new APIMethods();
+                bool Stat = apimetoder.OpretNyhed(key, newstitle.Text, newsdesc.Text);
+                if (Stat)
+                {
+                    DisplayAlert("Produkt oprettet", "Produktet er oprettet med succes", "OK");
+                    newstitle.Text = "";
+                    newsdesc.Text = "";
+                }
+                
+            }
+        }
     }
 }
