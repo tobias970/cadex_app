@@ -19,7 +19,6 @@ namespace Cadex
             InitializeComponent();
 
             APIMethods apimetoder = new APIMethods();
-            //JObject result = (JObject)apimetoder.HentVirkInfo();
             var values = apimetoder.HentVirkInfo();
 
             infotitle.Text = values.Item1;

@@ -15,6 +15,7 @@ namespace Cadex.Views
         List<Button> saveknapper = new List<Button>();
         List<Entry> titlerentry = new List<Entry>();
         List<Entry> beskrivelseentry = new List<Entry>();
+        List<Entry> prisentry = new List<Entry>();
 
         public ProductsEditPage(string key)
         {
@@ -36,17 +37,19 @@ namespace Cadex.Views
             Console.WriteLine("EDIT : " + btn.ClassId);
             string knappen = btn.ClassId;
             int start = knappen.IndexOf("edit", StringComparison.Ordinal);
-            //Console.WriteLine("START nr : " + start);
+            Console.WriteLine("START nr : " + start);
 
             int knapperne = Convert.ToInt32(knappen.Substring(0, start));
-            //Console.WriteLine("KNAPPERNE : " + knapperne);
+            Console.WriteLine("KNAPPERNE : " + knapperne);
 
             Button save = saveknapper[knapperne];
             Entry titel = titlerentry[knapperne];
             Entry beskriv = beskrivelseentry[knapperne];
+            Entry pris = prisentry[knapperne];
 
             titel.IsEnabled = true;
             beskriv.IsEnabled = true;
+            pris.IsEnabled = true;
             save.IsEnabled = true;
             btn.IsEnabled = false;
 
@@ -70,8 +73,9 @@ namespace Cadex.Views
             Button edit = editknapper[knapperne];
             Entry titel = titlerentry[knapperne];
             Entry beskriv = beskrivelseentry[knapperne];
+            Entry pris = prisentry[knapperne];
 
-            bool Stat = apimetoder.UpdateNyhed(key, productid, titel.Text, beskriv.Text);
+            bool Stat = apimetoder.UpdateProdukt(key, productid, titel.Text, beskriv.Text, pris.Text);
 
             if (Stat)
             {
@@ -79,6 +83,7 @@ namespace Cadex.Views
 
                 titel.IsEnabled = false;
                 beskriv.IsEnabled = false;
+                pris.IsEnabled = false;
                 edit.IsEnabled = true;
                 btn.IsEnabled = false;
             }
@@ -90,14 +95,14 @@ namespace Cadex.Views
 
         public void GenerateElements()
         {
-            JObject result = (JObject)apimetoder.HentNyheder(key);
+            JObject result = (JObject)apimetoder.HentProdukter();
 
             int i = 0;
 
-            foreach (var nyhederenkelt in result["newsPosts"])
+            foreach (var produkterenkelt in result["products"])
             {
-                string editknap = i + "edit" + (string)result["newsPosts"][i]["id"];
-                string saveknap = i + "save" + (string)result["newsPosts"][i]["id"];
+                string editknap = i + "edit" + (string)result["products"][i]["id"];
+                string saveknap = i + "save" + (string)result["products"][i]["id"];
 
                 Button edit = new Button
                 {
@@ -105,7 +110,11 @@ namespace Cadex.Views
                     BorderWidth = 1,
                     WidthRequest = 70,
                     TextColor = Color.Black,
+                    ClassId = editknap
                 };
+                edit.Clicked += Button_edit_pressed;
+                editknapper.Add(edit);
+
                 Button save = new Button
                 {
                     Text = "Gem",
@@ -113,7 +122,11 @@ namespace Cadex.Views
                     WidthRequest = 70,
                     TextColor = Color.Black,
                     IsEnabled = false,
+                    ClassId = saveknap
                 };
+                save.Clicked += Button_save_pressed;
+                saveknapper.Add(save);
+
                 StackLayout knapper = new StackLayout
                 {
                     Orientation = StackOrientation.Horizontal,
@@ -130,10 +143,13 @@ namespace Cadex.Views
                 };
                 Entry skrivtitle = new Entry
                 {
-                    Placeholder = "Titel",
+                    Text = (string)result["products"][i]["name"],
                     WidthRequest = 170,
                     IsEnabled = false,
+                    MaxLength = 200
                 };
+                titlerentry.Add(skrivtitle);
+
                 StackLayout titler = new StackLayout
                 {
                     Orientation = StackOrientation.Horizontal,
@@ -153,14 +169,16 @@ namespace Cadex.Views
                 {
                     Margin = new Thickness(0, 0, 0, 0),
                     HorizontalOptions = LayoutOptions.CenterAndExpand,
-                    MaxLength = 15,
+                    MaxLength = 300,
                     WidthRequest = 300,
                     HeightRequest = 150,
                     VerticalTextAlignment = TextAlignment.Start,
-                    Placeholder = "Beskrivelse",
+                    Text = (string)result["products"][i]["description"],
                     Keyboard = default,
                     IsEnabled = false,
                 };
+                beskrivelseentry.Add(skrivbeskrivelse);
+
                 StackLayout beskrivelser = new StackLayout
                 {
                     HorizontalOptions = LayoutOptions.CenterAndExpand,
@@ -168,12 +186,6 @@ namespace Cadex.Views
                 beskrivelser.Children.Add(beskrivelse);
                 beskrivelser.Children.Add(skrivbeskrivelse);
 
-                /*
-                <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
-                            <Label Text="Price : " VerticalTextAlignment="Center"/>
-                            <Entry Text="" HorizontalOptions="CenterAndExpand" MaxLength="15" WidthRequest="110" Placeholder="Price" Keyboard="Numeric"/>
-                        </StackLayout>
-                 */
                 Label pris = new Label
                 {
                     Text = "Pris : ",
@@ -181,14 +193,16 @@ namespace Cadex.Views
                 };
                 Entry prisen = new Entry
                 {
-                    Text = "",
+                    Text = (string)result["products"][i]["price"],
                     HorizontalOptions = LayoutOptions.CenterAndExpand,
-                    MaxLength = 15,
+                    MaxLength = 30,
                     WidthRequest = 110,
                     Placeholder = "Pris",
                     Keyboard = Keyboard.Numeric,
                     IsEnabled = false,
                 };
+                prisentry.Add(prisen);
+
                 StackLayout priser = new StackLayout
                 {
                     Orientation = StackOrientation.Horizontal,

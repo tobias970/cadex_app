@@ -9,12 +9,6 @@ namespace Cadex.Services
     {
         public JObject result;
 
-        public string tempvalue;
-        public int[] rumarray;
-        public string temperaturvalue;
-        public string humidityvalue;
-
-
         public APIMethods()
         {
 
@@ -33,40 +27,28 @@ namespace Cadex.Services
                 password = kodeord
 
             };
-            try
-            {
-                //Oprettelse af https request til API'en.
-                APICustomRequest http = new APICustomRequest("https://api.cadex.dk/");
+            //Oprettelse af https request til API'en.
+            APICustomRequest http = new APICustomRequest("https://api.cadex.dk/");
 
-                //Sender data til følgende API endpoint.
-                JObject json = http.SendData("auth/authenticate", data, Method.POST);
+            //Sender data til følgende API endpoint.
+            JObject json = http.SendData("auth/authenticate", data, Method.POST);
 
-                Console.WriteLine(json);
+            Console.WriteLine(json);
 
-                //Finder relevante json data og gemmer det i en variabel.
-                result = (JObject)json.SelectToken("result");
+            //Finder relevante json data og gemmer det i en variabel.
+            result = (JObject)json.SelectToken("result");
 
-                Console.WriteLine("result : " + result);
+            Console.WriteLine("result : " + result);
 
-                key = (string)result["token"];
+            key = (string)result["token"];
 
-                Console.WriteLine("key : " + key);
-
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-            }
-
-
-            //validatekey(key);
-
+            Console.WriteLine("key : " + key);
 
             //Retunere noeglen.
             return key;
         }
 
-        public void validatekey(string key)
+        public bool validatekey(string key)
         {
             Console.WriteLine("TOKENVALID : " + key);
             //Den nye temperatur som sendes til APIen.
@@ -83,6 +65,9 @@ namespace Cadex.Services
             JObject json = http.SendData("auth/validate", data, Method.POST);
             Console.WriteLine("VALID : " + json);
 
+            bool status = (bool)json.SelectToken("status");
+
+            return status;
         }
 
         public (string, string, string, string) HentVirkInfo()
@@ -193,6 +178,27 @@ namespace Cadex.Services
             return status;
         }
 
+        public bool UpdateProdukt(string token, int identity, string overskrift, string beskrivelse, string pris)
+        {
+            var data = new
+            {
+                title = overskrift,
+                content = beskrivelse,
+                price = pris
+            };
+
+            APICustomRequest http = new APICustomRequest("https://api.cadex.dk/");
+
+            //Sender data til følgende API endpoint.
+            JObject json = http.SendData("product/update/" + identity, data, Method.PUT, token);
+            Console.WriteLine(json);
+
+            bool status = (bool)json.SelectToken("status");
+            Console.WriteLine("STATUSRE : " + status);
+
+            return status;
+        }
+
         public bool SletNyhed(string token, string identity)
         {
             //Den nye temperatur som sendes til APIen.
@@ -223,121 +229,6 @@ namespace Cadex.Services
             Console.WriteLine("STATUSRE : " + status);
 
             return status;
-        }
-
-
-
-
-
-
-
-
-        //Henter standard temperatur fra databasen via. APIen.
-        public void HentStandardTemperatur(string token)
-        {
-            try
-            {
-                //Oprettelse af https request til API'en
-                APICustomRequest http = new APICustomRequest("https://api.indeklima.local");
-
-                //Sender data til følgende API endpoint.
-                JObject json = http.SendData("api/temperature/getDefaultTemperature", new { }, Method.POST, token);
-                Console.WriteLine(json);
-
-                //Finder relevante json data og gemmer det i en variabel.
-                tempvalue = (string)json.SelectToken("temperature");
-
-                //Udskriver variablen.
-                Console.WriteLine(tempvalue);
-
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-            }
-        }
-
-        //Bruges til at sætte en ny standard temperatur for alle rum. 
-        public void SetStandardTemp(string token, int temp, int format)
-        {
-
-            //Den nye temperatur som sendes til APIen.
-            var data = new
-            {
-                temperature = temp,
-                format = format
-            };
-
-            try
-            {
-                APICustomRequest http = new APICustomRequest("https://api.indeklima.local");
-
-                //Sender data til følgende API endpoint.
-                JObject json = http.SendData("api/temperature/setDefaultTemperature", data, Method.POST, token);
-                Console.WriteLine(json);
-
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-            }
-        }
-
-        //Henter rum numre og smider det i et array.
-        public void HentRum(string token)
-        {
-
-            try
-            {
-                APICustomRequest http = new APICustomRequest("https://api.indeklima.local");
-
-                //Sender data til følgende API endpoint.
-                JObject json = http.SendData("api/location/getRooms", new { }, Method.POST, token);
-                Console.WriteLine(json);
-
-                //Finder relevante json data og gemmer det i et array.
-                JArray rum = (JArray)json.SelectToken("rooms");
-
-                //Laver det om til et public int array, som bruges af andre klasser.
-                rumarray = rum.ToObject<int[]>();
-
-
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-            }
-        }
-
-        //Henter rum temperatur for de enkelte rum.
-        public void HentRumTemperatur(string token, int nr)
-        {
-
-            var data = new
-            {
-                rumnr = nr
-
-            };
-
-            try
-            {
-                APICustomRequest http = new APICustomRequest("https://api.indeklima.local");
-
-                //Sender data til følgende API endpoint.
-                JObject json = http.SendData("api/temperature/getRoomTemperature", data, Method.POST, token);
-                Console.WriteLine(json);
-
-                //Finder relevante json data og gemmer det i variabler.
-                temperaturvalue = (string)json.SelectToken("room.temperature");
-                Console.WriteLine(temperaturvalue);
-
-                humidityvalue = (string)json.SelectToken("room.humidity");
-                Console.WriteLine(humidityvalue);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-            }
         }
     }
 }
