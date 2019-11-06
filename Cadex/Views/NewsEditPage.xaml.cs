@@ -8,6 +8,8 @@ namespace Cadex.Views
     public partial class NewsEditPage : ContentPage
     {
         string key;
+        List<Button> editknapper = new List<Button>();
+        List<Button> saveknapper = new List<Button>();
 
         public NewsEditPage(string key)
         {
@@ -22,6 +24,27 @@ namespace Cadex.Views
             Application.Current.MainPage = new Nav(key);
         }
 
+        void Button_edit_pressed(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+
+            Console.WriteLine("EDIT : " + btn.ClassId);
+
+            Button save = saveknapper[Convert.ToInt32(btn.ClassId.Substring(4))];
+            save.IsEnabled = true;
+            btn.IsEnabled = false;
+        }
+
+        void Button_save_pressed(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+
+            Console.WriteLine("SAVE : " + btn.ClassId);
+
+            Button edit = editknapper[Convert.ToInt32(btn.ClassId.Substring(4))];
+            edit.IsEnabled = true;
+            btn.IsEnabled = false;
+        }
 
         public void GenerateElements()
         {
@@ -29,13 +52,20 @@ namespace Cadex.Views
             int i = 0;
             while (i < 10)
             {
+                string editknap = "edit" + i;
+                string saveknap = "save" + i;
+
                 Button edit = new Button
                 {
                     Text = "Ret",
                     BorderWidth = 1,
                     WidthRequest = 70,
                     TextColor = Color.Black,
+                    ClassId = editknap
                 };
+                edit.Clicked += Button_edit_pressed;
+                editknapper.Add(edit);
+
                 Button save = new Button
                 {
                     Text = "Gem",
@@ -43,7 +73,11 @@ namespace Cadex.Views
                     WidthRequest = 70,
                     TextColor = Color.Black,
                     IsEnabled = false,
+                    ClassId = saveknap
                 };
+                save.Clicked += Button_save_pressed;
+                saveknapper.Add(save);
+
                 StackLayout knapper = new StackLayout
                 {
                     Orientation = StackOrientation.Horizontal,
