@@ -71,10 +71,21 @@ namespace Cadex.Views
             Entry titel = titlerentry[knapperne];
             Entry beskriv = beskrivelseentry[knapperne];
 
-            titel.IsEnabled = false;
-            beskriv.IsEnabled = false;
-            edit.IsEnabled = true;
-            btn.IsEnabled = false;
+            bool Stat = apimetoder.UpdateNyhed(key, newsid, titel.Text, beskriv.Text);
+
+            if (Stat)
+            {
+                DisplayAlert("Nyhed opdateret", "Nyheden er opdateret", "OK");
+
+                titel.IsEnabled = false;
+                beskriv.IsEnabled = false;
+                edit.IsEnabled = true;
+                btn.IsEnabled = false;
+            }
+            else
+            {
+                DisplayAlert("Fejl", "Nyheden blev ikke opdateret", "OK");
+            }
         }
 
         public void GenerateElements()

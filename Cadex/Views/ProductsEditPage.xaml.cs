@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using Cadex.Services;
+using Newtonsoft.Json.Linq;
 using Xamarin.Forms;
 
 namespace Cadex.Views
@@ -8,6 +9,12 @@ namespace Cadex.Views
     public partial class ProductsEditPage : ContentPage
     {
         string key;
+        APIMethods apimetoder = new APIMethods();
+
+        List<Button> editknapper = new List<Button>();
+        List<Button> saveknapper = new List<Button>();
+        List<Entry> titlerentry = new List<Entry>();
+        List<Entry> beskrivelseentry = new List<Entry>();
 
         public ProductsEditPage(string key)
         {
@@ -21,34 +28,77 @@ namespace Cadex.Views
         {
             Application.Current.MainPage = new Nav(key);
         }
+
+        void Button_edit_pressed(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+
+            Console.WriteLine("EDIT : " + btn.ClassId);
+            string knappen = btn.ClassId;
+            int start = knappen.IndexOf("edit", StringComparison.Ordinal);
+            //Console.WriteLine("START nr : " + start);
+
+            int knapperne = Convert.ToInt32(knappen.Substring(0, start));
+            //Console.WriteLine("KNAPPERNE : " + knapperne);
+
+            Button save = saveknapper[knapperne];
+            Entry titel = titlerentry[knapperne];
+            Entry beskriv = beskrivelseentry[knapperne];
+
+            titel.IsEnabled = true;
+            beskriv.IsEnabled = true;
+            save.IsEnabled = true;
+            btn.IsEnabled = false;
+
+        }
+
+        void Button_save_pressed(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+
+            Console.WriteLine("SAVE : " + btn.ClassId);
+
+            string knappen = btn.ClassId;
+            int start = knappen.IndexOf("save", StringComparison.Ordinal);
+            //Console.WriteLine("START nr : " + start);
+
+            int knapperne = Convert.ToInt32(knappen.Substring(0, start));
+            //Console.WriteLine("KNAPPERNE : " + knapperne);
+            int productid = Convert.ToInt32(knappen.Substring(start + 4));
+            Console.WriteLine("PRODUCTID : " + productid);
+
+            Button edit = editknapper[knapperne];
+            Entry titel = titlerentry[knapperne];
+            Entry beskriv = beskrivelseentry[knapperne];
+
+            bool Stat = apimetoder.UpdateNyhed(key, productid, titel.Text, beskriv.Text);
+
+            if (Stat)
+            {
+                DisplayAlert("Produkt opdateret", "Produktet er opdateret", "OK");
+
+                titel.IsEnabled = false;
+                beskriv.IsEnabled = false;
+                edit.IsEnabled = true;
+                btn.IsEnabled = false;
+            }
+            else
+            {
+                DisplayAlert("Fejl", "Nyheden blev ikke opdateret", "OK");
+            }
+        }
+
         public void GenerateElements()
         {
-            /*
-            <Frame Margin="0,0,0,30">
-                    <StackLayout>
-                        <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Margin="0,0,0,20">
-                            <Button Text="Edit" BorderWidth="1" WidthRequest="70" TextColor="Black"/>
-                            <Button Text="Save" BorderWidth="1" WidthRequest="70" TextColor="Black"/>
-                        </StackLayout>
-                        <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
-                            <Label Text="Title : " VerticalTextAlignment="Center"/>
-                            <Entry Placeholder="Title"/>
-                        </StackLayout>
-                        <StackLayout HorizontalOptions="CenterAndExpand">
-                            <Label Text="Description : " VerticalTextAlignment="Center"/>
-                            <Entry Text="" Margin="0,0,0,0" HorizontalOptions="CenterAndExpand" MaxLength="15" WidthRequest="300" HeightRequest="150" VerticalTextAlignment="Start" Placeholder="Description" Keyboard="Default"/>
-                        </StackLayout>
-                        <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
-                            <Label Text="Price : " VerticalTextAlignment="Center"/>
-                            <Entry Text="" HorizontalOptions="CenterAndExpand" MaxLength="15" WidthRequest="110" Placeholder="Price" Keyboard="Numeric"/>
-                        </StackLayout>
-                    </StackLayout>
-                </Frame>
-*/
+            JObject result = (JObject)apimetoder.HentNyheder(key);
 
             int i = 0;
-            while (i < 10)
+
+            foreach (var nyhederenkelt in result["newsPosts"])
             {
+                string editknap = i + "edit" + (string)result["newsPosts"][i]["id"];
+                string saveknap = i + "save" + (string)result["newsPosts"][i]["id"];
+
                 Button edit = new Button
                 {
                     Text = "Ret",
