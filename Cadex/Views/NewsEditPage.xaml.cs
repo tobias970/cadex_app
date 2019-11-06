@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using Cadex.Services;
+using Newtonsoft.Json.Linq;
 using Xamarin.Forms;
 
 namespace Cadex.Views
@@ -8,8 +9,12 @@ namespace Cadex.Views
     public partial class NewsEditPage : ContentPage
     {
         string key;
+        APIMethods apimetoder = new APIMethods();
+
         List<Button> editknapper = new List<Button>();
         List<Button> saveknapper = new List<Button>();
+        List<Entry> titlerentry = new List<Entry>();
+        List<Entry> beskrivelseentry = new List<Entry>();
 
         public NewsEditPage(string key)
         {
@@ -29,10 +34,22 @@ namespace Cadex.Views
             Button btn = (Button)sender;
 
             Console.WriteLine("EDIT : " + btn.ClassId);
+            string knappen = btn.ClassId;
+            int start = knappen.IndexOf("edit", StringComparison.Ordinal);
+            //Console.WriteLine("START nr : " + start);
 
-            Button save = saveknapper[Convert.ToInt32(btn.ClassId.Substring(4))];
+            int knapperne = Convert.ToInt32(knappen.Substring(0, start));
+            //Console.WriteLine("KNAPPERNE : " + knapperne);
+            
+            Button save = saveknapper[knapperne];
+            Entry titel = titlerentry[knapperne];
+            Entry beskriv = beskrivelseentry[knapperne];
+
+            titel.IsEnabled = true;
+            beskriv.IsEnabled = true;
             save.IsEnabled = true;
             btn.IsEnabled = false;
+            
         }
 
         void Button_save_pressed(object sender, EventArgs e)
@@ -41,7 +58,21 @@ namespace Cadex.Views
 
             Console.WriteLine("SAVE : " + btn.ClassId);
 
-            Button edit = editknapper[Convert.ToInt32(btn.ClassId.Substring(4))];
+            string knappen = btn.ClassId;
+            int start = knappen.IndexOf("save", StringComparison.Ordinal);
+            //Console.WriteLine("START nr : " + start);
+
+            int knapperne = Convert.ToInt32(knappen.Substring(0, start));
+            //Console.WriteLine("KNAPPERNE : " + knapperne);
+            int newsid = Convert.ToInt32(knappen.Substring(start + 4));
+            Console.WriteLine("NEWSID : " + newsid);
+
+            Button edit = editknapper[knapperne];
+            Entry titel = titlerentry[knapperne];
+            Entry beskriv = beskrivelseentry[knapperne];
+
+            titel.IsEnabled = false;
+            beskriv.IsEnabled = false;
             edit.IsEnabled = true;
             btn.IsEnabled = false;
         }
@@ -49,11 +80,14 @@ namespace Cadex.Views
         public void GenerateElements()
         {
 
+            JObject result = (JObject)apimetoder.HentNyheder(key);
+
             int i = 0;
-            while (i < 10)
+
+            foreach (var nyhederenkelt in result["newsPosts"])
             {
-                string editknap = "edit" + i;
-                string saveknap = "save" + i;
+                string editknap = i + "edit" + (string)result["newsPosts"][i]["id"];
+                string saveknap = i + "save" + (string)result["newsPosts"][i]["id"];
 
                 Button edit = new Button
                 {
@@ -94,10 +128,13 @@ namespace Cadex.Views
                 };
                 Entry skrivtitle = new Entry
                 {
-                    Placeholder = "Titel",
+                    Text = (string)result["newsPosts"][i]["title"],
                     WidthRequest = 170,
+                    MaxLength = 100,
                     IsEnabled = false,
                 };
+                titlerentry.Add(skrivtitle);
+
                 StackLayout titler = new StackLayout
                 {
                     Orientation = StackOrientation.Horizontal,
@@ -117,14 +154,16 @@ namespace Cadex.Views
                 {
                     Margin = new Thickness(0, 0, 0, 0),
                     HorizontalOptions = LayoutOptions.CenterAndExpand,
-                    MaxLength = 15,
+                    MaxLength = 300,
                     WidthRequest = 300,
                     HeightRequest = 150,
                     VerticalTextAlignment = TextAlignment.Start,
-                    Placeholder = "Beskrivelse",
+                    Text = (string)result["newsPosts"][i]["content"],
                     Keyboard = default,
                     IsEnabled = false,
                 };
+                beskrivelseentry.Add(skrivbeskrivelse);
+
                 StackLayout beskrivelser = new StackLayout
                 {
                     HorizontalOptions = LayoutOptions.CenterAndExpand,
