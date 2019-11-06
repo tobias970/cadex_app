@@ -4,11 +4,12 @@
         <StackLayout Margin="10,60,0,0" HorizontalOptions="StartAndExpand">
                 <Button Text="Hjem" BorderColor="Black" BorderWidth="1" HorizontalOptions="CenterAndExpand" WidthRequest="60" TextColor="Black" Pressed="Button_NavBack_Pressed" BackgroundColor="White"/>
         </StackLayout>
-        <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
-            <Label Text="Tilføj nyheder" FontSize="Title" HorizontalOptions="CenterAndExpand"/>
-            <StackLayout Orientation="Horizontal" Margin="0,70,0,20">
-                <Label Text="Nyheds titel :" Margin="0,0,0,10" HorizontalOptions="CenterAndExpand" FontSize="18" VerticalTextAlignment="Center"/>
-                <Entry x:Name="newstitle" Text="" Margin="0,0,10,10" HorizontalOptions="CenterAndExpand" MaxLength="15" WidthRequest="160" Placeholder="Titel" Keyboard="Default" /> 
+        <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+            <Label Text="Tilføj nyheder" FontSize="Title" Margin="0,0,0,50" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+            <Label x:Name="fejl" Text="ERROR: Titlen og beskrivelsen skal være udfyldt." TextColor="Red" Margin="0,0,0,0" HorizontalTextAlignment="Center" FontSize="18" IsVisible="false"/> 
+            <StackLayout Orientation="Horizontal" Margin="0,0,0,20" WidthRequest="300">
+                <Label Text="Nyheds titel :" Margin="0,0,0,10" HorizontalOptions="CenterAndExpand" WidthRequest="150" FontSize="18" VerticalTextAlignment="Center"/>
+                <Entry x:Name="newstitle" Text="" Margin="0,0,0,10" HorizontalOptions="CenterAndExpand" MaxLength="100" WidthRequest="150" Placeholder="Titel" Keyboard="Default" /> 
             </StackLayout>
             <Label Text="Beskrivelse :" Margin="0,0,0,0" HorizontalOptions="CenterAndExpand" FontSize="18"/>
             <Entry x:Name="newsdesc" Text="" Margin="0,0,0,0" HorizontalOptions="CenterAndExpand" MaxLength="200" WidthRequest="300" HeightRequest="150" VerticalTextAlignment="Start" Placeholder="Beskrivelse" Keyboard="Default"/>

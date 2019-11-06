@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using Cadex.Services;
+using Newtonsoft.Json.Linq;
 using Xamarin.Forms;
 
 namespace Cadex.Views
@@ -8,6 +10,7 @@ namespace Cadex.Views
     public partial class NewsDeletePage : ContentPage
     {
         string key;
+        APIMethods apimetoder = new APIMethods();
 
         public NewsDeletePage(string key)
         {
@@ -15,7 +18,6 @@ namespace Cadex.Views
 
             this.key = key;
 
-            Console.WriteLine("Starter slet news");
             GenerateElements();
         }
 
@@ -31,19 +33,32 @@ namespace Cadex.Views
 
             if (answer == true)
             {
-                Console.WriteLine("Slet denne");
                 //Kald metode som sletter news
                 Button btn = (Button)sender;
-                Console.WriteLine("Her : " + btn.ClassId);
+                
+                bool Stat =  apimetoder.SletNyhed(key, btn.ClassId);
+
+                if (Stat)
+                {
+                    await DisplayAlert("Nyhed slettet", "Nyheden er slettet", "OK");
+
+                    stack.Children.Clear();
+                    GenerateElements();
+                }
+                else
+                {
+                    await DisplayAlert("Fejl", "Nyheden blev ikke slettet", "OK");
+                }
             }
         }
 
         public void GenerateElements()
         {
+            JObject result = (JObject)apimetoder.HentNyheder(key);
 
-            int i = 1;
-           
-            while (i < 10)
+            int i = 0;
+
+            foreach (var nyhederenkelt in result["newsPosts"])
             {
                 
                 StackLayout alt = new StackLayout()
@@ -58,7 +73,7 @@ namespace Cadex.Views
                     WidthRequest = 70,
                     TextColor = Color.Black,
                     Margin = new Thickness(0, 0, 10, 0),
-                    ClassId = i.ToString(),    
+                    ClassId = (string)result["newsPosts"][i]["id"],    
                 };
                 
                 knap.Clicked += OnAlertYesNoClicked;
@@ -66,7 +81,7 @@ namespace Cadex.Views
 
                 Label titel = new Label()
                 {
-                    Text = "Ny chef",
+                    Text = (string)result["newsPosts"][i]["title"],
                     VerticalTextAlignment = TextAlignment.Center,
                     HorizontalOptions = LayoutOptions.StartAndExpand,
                 };

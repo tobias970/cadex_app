@@ -7,7 +7,7 @@ namespace Cadex.Services
 {
     public class APICustomRequest
     {
-        private readonly RestClient client;
+        private RestClient client;
 
         /*
          * CustomRequest() bruges til at sætte vores RestClient client  
@@ -35,11 +35,19 @@ namespace Cadex.Services
             // Sætter JSON body.
             request.AddJsonBody(obj);
 
+            Console.WriteLine("obj : " + obj);
+
             // Eksekvere requesten.
             IRestResponse response = client.Execute(request);
 
+            Console.WriteLine("response : " + response.Content);
+
             // Konvertere variablen response til JSON.
             JObject jsonContent = JObject.Parse(response.Content);
+
+            client = null;
+
+            Console.WriteLine("jsonContent : " + jsonContent);
 
             // Returnere JSON objektet.
             return jsonContent;

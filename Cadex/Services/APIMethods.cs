@@ -24,7 +24,7 @@ namespace Cadex.Services
         modtager den en token som bliver gemt i variablen "key".*/
         public string HentNyNoegle(string brugernavn, string kodeord)
         {
-            string key;
+            string key = "";
 
             //Dataene der bliver sendt til API'en
             var data = new
@@ -33,28 +33,35 @@ namespace Cadex.Services
                 password = kodeord
 
             };
+            try
+            {
+                //Oprettelse af https request til API'en.
+                APICustomRequest http = new APICustomRequest("https://api.cadex.dk/");
 
-            //Oprettelse af https request til API'en.
-            APICustomRequest http = new APICustomRequest("https://api.cadex.dk/");
+                //Sender data til følgende API endpoint.
+                JObject json = http.SendData("auth/authenticate", data, Method.POST);
 
-            //Sender data til følgende API endpoint.
-            JObject json = http.SendData("auth/authenticate", data, Method.POST);
+                Console.WriteLine(json);
 
-            Console.WriteLine(json);
+                //Finder relevante json data og gemmer det i en variabel.
+                result = (JObject)json.SelectToken("result");
 
-            //Finder relevante json data og gemmer det i en variabel.
-            result = (JObject)json.SelectToken("result");
+                Console.WriteLine("result : " + result);
 
-            Console.WriteLine("result : " + result);
+                key = (string)result["token"];
 
-            key = (string)result["token"];
+                Console.WriteLine("key : " + key);
 
-            Console.WriteLine("key : " + key);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
 
 
             //validatekey(key);
 
-            
+
             //Retunere noeglen.
             return key;
         }
@@ -137,6 +144,60 @@ namespace Cadex.Services
 
             //Sender data til følgende API endpoint.
             JObject json = http.SendData("news/create", data, Method.POST, token);
+            Console.WriteLine(json);
+
+            bool status = (bool)json.SelectToken("status");
+            Console.WriteLine("STATUSRE : " + status);
+
+            return status;
+        }
+
+        public bool OpretProdukt(string token, string overskrift, string beskrivelse, string pris)
+        {
+            //Den nye temperatur som sendes til APIen.
+            var data = new
+            {
+                title = overskrift,
+                description = beskrivelse,
+                price = pris
+            };
+
+            APICustomRequest http = new APICustomRequest("https://api.cadex.dk/");
+
+            //Sender data til følgende API endpoint.
+            JObject json = http.SendData("product/create", data, Method.POST, token);
+            Console.WriteLine(json);
+
+            bool status = (bool)json.SelectToken("status");
+            Console.WriteLine("STATUSRE : " + status);
+
+            return status;
+        }
+
+        public bool SletNyhed(string token, string identity)
+        {
+            //Den nye temperatur som sendes til APIen.
+
+            APICustomRequest http = new APICustomRequest("https://api.cadex.dk/");
+
+            //Sender data til følgende API endpoint.
+            JObject json = http.SendData("news/delete/" + identity, new { }, Method.DELETE, token);
+            Console.WriteLine(json);
+
+            bool status = (bool)json.SelectToken("status");
+            Console.WriteLine("STATUSRE : " + status);
+
+            return status;
+        }
+
+        public bool SletProdukt(string token, string identity)
+        {
+            //Den nye temperatur som sendes til APIen.
+
+            APICustomRequest http = new APICustomRequest("https://api.cadex.dk/");
+
+            //Sender data til følgende API endpoint.
+            JObject json = http.SendData("product/delete/" + identity, new { }, Method.DELETE, token);
             Console.WriteLine(json);
 
             bool status = (bool)json.SelectToken("status");

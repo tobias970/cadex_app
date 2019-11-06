@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using System.Diagnostics;
+using Cadex.Services;
+using Newtonsoft.Json.Linq;
 using Xamarin.Forms;
 
 namespace Cadex.Views
@@ -8,6 +10,7 @@ namespace Cadex.Views
     public partial class ProductsDeletePage : ContentPage
     {
         string key;
+        APIMethods apimetoder = new APIMethods();
 
         public ProductsDeletePage(string key)
         {
@@ -21,19 +24,40 @@ namespace Cadex.Views
         {
             Application.Current.MainPage = new Nav(key);
         }
+
+        async void OnAlertYesNoClicked(object sender, EventArgs e)
+        {
+            bool answer = await DisplayAlert("Slet", "Er du sikker på du vil slette denne?", "Ja", "Nej");
+            Debug.WriteLine("Answer: " + answer);
+
+            if (answer == true)
+            {
+                //Kald metode som sletter news
+                Button btn = (Button)sender;
+
+                bool Stat = apimetoder.SletProdukt(key, btn.ClassId);
+
+                if (Stat)
+                {
+                    await DisplayAlert("Produkt slettet", "Produktet er slettet", "OK");
+
+                    stack.Children.Clear();
+                    GenerateElements();
+                }
+                else
+                {
+                    await DisplayAlert("Fejl", "Produktet blev ikke slettet", "OK");
+                }
+            }
+        }
+
         public void GenerateElements()
         {
-            /*
-            <Frame Padding="10" HorizontalOptions="CenterAndExpand" WidthRequest="260" Margin="0,5,0,0" HasShadow="False" OutlineColor="Black">
-                    <StackLayout Orientation="Horizontal">
-                        <Button Text="Slet" BorderColor="Black" BorderWidth="1" WidthRequest="70" TextColor="Black" Margin="0,0,10,0"/>
-                        <Label Text="Ford Focus RS 500" VerticalTextAlignment="Center" HorizontalOptions="StartAndExpand"/>
-                    </StackLayout>
-                </Frame>
-             */
+            JObject result = (JObject)apimetoder.HentProdukter();
 
             int i = 0;
-            while (i < 10)
+
+            foreach (var produkterenkelt in result["products"])
             {
 
                 StackLayout alt = new StackLayout()
@@ -48,10 +72,13 @@ namespace Cadex.Views
                     WidthRequest = 70,
                     TextColor = Color.Black,
                     Margin = new Thickness(0, 0, 10, 0),
+                    ClassId = (string)result["products"][i]["id"]
                 };
+                knap.Clicked += OnAlertYesNoClicked;
+
                 Label titel = new Label()
                 {
-                    Text = "Ford Focus RS 500",
+                    Text = (string)result["products"][i]["name"],
                     VerticalTextAlignment = TextAlignment.Center,
                     HorizontalOptions = LayoutOptions.StartAndExpand,
                 };
