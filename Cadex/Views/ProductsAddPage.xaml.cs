@@ -8,6 +8,7 @@ namespace Cadex.Views
     public partial class ProductsAddPage : ContentPage
     {
         string key;
+        APIMethods apimetoder = new APIMethods();
 
         public ProductsAddPage(string key)
         {
@@ -21,29 +22,40 @@ namespace Cadex.Views
         }
         void Button_OpretProdukt_Pressed(object sender, System.EventArgs e)
         {
-            if (producttitle.Text != "" && productdesc.Text != "" && productpris.Text != "")
+            bool status = apimetoder.validatekey(key);
+            if (status)
             {
-                APIMethods apimetoder = new APIMethods();
-                bool Stat = apimetoder.OpretProdukt(key, producttitle.Text, productdesc.Text, productpris.Text);
-                if (Stat)
+                if (producttitle.Text != "" && productdesc.Text != "" && productpris.Text != "")
                 {
-                    DisplayAlert("Produkt oprettet", "Produktet er oprettet med succes", "OK");
+                    bool Stat = apimetoder.OpretProdukt(key, producttitle.Text, productdesc.Text, productpris.Text);
+                    if (Stat)
+                    {
+                        DisplayAlert("Produkt oprettet", "Produktet er oprettet med succes", "OK");
 
-                    producttitle.Text = "";
-                    productdesc.Text = "";
-                    productpris.Text = "";
+                        producttitle.Text = "";
+                        productdesc.Text = "";
+                        productpris.Text = "";
 
-                    fejl.IsVisible = false;
+                        fejl.IsVisible = false;
+                    }
+                    else
+                    {
+                        DisplayAlert("Fejl", "Produktet blev ikke oprettet", "OK");
+                    }
                 }
                 else
                 {
-                    DisplayAlert("Fejl", "Produktet blev ikke oprettet", "OK");
+                    fejl.IsVisible = true;
                 }
             }
             else
             {
-                fejl.IsVisible = true;
+                DisplayAlert("Fejl", "Du er blevet logget ud", "OK");
+                AppSession.login = false;
+                Application.Current.MainPage = new Nav(key);
             }
+
+            
         }
     }
 }

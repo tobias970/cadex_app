@@ -22,7 +22,17 @@ namespace Cadex.Views
 
             this.key = key;
 
-            GenerateElements();
+            bool status = apimetoder.validatekey(key);
+            if (status)
+            {
+                GenerateElements();
+            }
+            else
+            {
+                DisplayAlert("Fejl", "Du er blevet logget ud", "OK");
+                AppSession.login = false;
+                Application.Current.MainPage = new Nav(key);
+            }
         }
         void Button_NavBack_Pressed(object sender, System.EventArgs e)
         {
@@ -106,7 +116,8 @@ namespace Cadex.Views
                     BorderWidth = 1,
                     WidthRequest = 70,
                     TextColor = Color.Black,
-                    ClassId = editknap
+                    ClassId = editknap,
+                    BackgroundColor = Color.Orange
                 };
                 edit.Clicked += Button_edit_pressed;
                 editknapper.Add(edit);
@@ -118,7 +129,8 @@ namespace Cadex.Views
                     WidthRequest = 70,
                     TextColor = Color.Black,
                     IsEnabled = false,
-                    ClassId = saveknap
+                    ClassId = saveknap,
+                    BackgroundColor = Color.FromHex("#20bf6b")
                 };
                 save.Clicked += Button_save_pressed;
                 saveknapper.Add(save);

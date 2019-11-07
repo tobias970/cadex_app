@@ -104,7 +104,6 @@ namespace Cadex.Services
 
         public object HentNyheder(string token)
         {
-
             APICustomRequest http = new APICustomRequest("https://api.cadex.dk/");
 
             //Sender data til følgende API endpoint.
@@ -118,7 +117,6 @@ namespace Cadex.Services
 
         public bool OpretNyhed(string token, string overskrift, string beskrivelse)
         {
-            //Den nye temperatur som sendes til APIen.
             var data = new
             {
                 title = overskrift,
@@ -139,6 +137,8 @@ namespace Cadex.Services
 
         public bool OpretProdukt(string token, string overskrift, string beskrivelse, string pris)
         {
+            validatekey(token);
+
             //Den nye temperatur som sendes til APIen.
             var data = new
             {

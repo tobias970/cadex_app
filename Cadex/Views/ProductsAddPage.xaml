@@ -1,25 +1,29 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Cadex.Views.ProductsAddPage" BackgroundColor="SkyBlue">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Cadex.Views.ProductsAddPage" BackgroundColor="#4a69bd">
     <ScrollView>
         <StackLayout>
             <StackLayout Margin="10,50,0,0" HorizontalOptions="StartAndExpand">
-                    <Button Text="Hjem" BorderColor="Black" BorderWidth="1" HorizontalOptions="CenterAndExpand" WidthRequest="60" TextColor="Black" Pressed="Button_NavBack_Pressed" BackgroundColor="White"/>
+                <Button Text="Hjem" BorderColor="Black" BorderWidth="1" HorizontalOptions="CenterAndExpand" WidthRequest="60" TextColor="Black" Pressed="Button_NavBack_Pressed" BackgroundColor="White"/>
             </StackLayout>
-            <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
-                <Label Text="Tilføj produkter" FontSize="Title" Margin="0,0,0,50" HorizontalOptions="CenterAndExpand"/>
-                <Label x:Name="fejl" Text="ERROR: Felterne skal være udfyldt." TextColor="Red" Margin="0,0,0,0" HorizontalTextAlignment="Center" FontSize="18" IsVisible="false"/> 
-                <StackLayout Orientation="Horizontal" Margin="0,0,0,20" WidthRequest="300">
-                    <Label Text="Produkt titel :" Margin="0,0,0,10" HorizontalOptions="CenterAndExpand" WidthRequest="150" FontSize="18" VerticalTextAlignment="Center"/>
-                    <Entry x:Name="producttitle" Text="" Margin="0,0,0,10" HorizontalOptions="CenterAndExpand" MaxLength="100" WidthRequest="150" Placeholder="Titel" Keyboard="Default" /> 
+            <Frame VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" WidthRequest="300">
+                <StackLayout>
+                    <StackLayout>
+                        <Label Text="Tilføj produkter" FontSize="Title" Margin="0,20,0,50" HorizontalOptions="CenterAndExpand"/>
+                        <Label x:Name="fejl" Text="ERROR: Felterne skal være udfyldt." TextColor="Red" Margin="0,0,0,0" HorizontalTextAlignment="Center" FontSize="18" IsVisible="false"/> 
+                        <StackLayout Orientation="Horizontal" Margin="0,0,0,20" WidthRequest="300">
+                            <Label Text="Produkt titel :" Margin="0,0,0,10" HorizontalOptions="StartAndExpand" WidthRequest="150" FontSize="18" VerticalTextAlignment="Center"/>
+                            <Entry x:Name="producttitle" Text="" Margin="0,0,0,10" HorizontalOptions="EndAndExpand" MaxLength="100" WidthRequest="150" Placeholder="Titel" Keyboard="Default" /> 
+                        </StackLayout>
+                        <Label Text="Beskrivelse :" Margin="0,0,0,0" HorizontalOptions="CenterAndExpand" FontSize="18"/>
+                        <Entry x:Name="productdesc" Text="" Margin="0,0,0,0" HorizontalOptions="CenterAndExpand" MaxLength="200" WidthRequest="300" HeightRequest="150" VerticalTextAlignment="Start" Placeholder="Beskrivelse" Keyboard="Default"/>
+                        <StackLayout Orientation="Horizontal" Margin="0,0,0,50">
+                            <Label Text="Pris :" Margin="0,8,-85,0" HorizontalOptions="CenterAndExpand" FontSize="18"/>
+                            <Entry x:Name="productpris" Text="" Margin="0,0,10,10" HorizontalOptions="CenterAndExpand" MaxLength="15" WidthRequest="110" Placeholder="Pris" Keyboard="Numeric"/>    
+                        </StackLayout>
+                        <Button Text="Tilføj" BorderColor="Black" BorderWidth="1" HorizontalOptions="CenterAndExpand" WidthRequest="150" TextColor="Black" BackgroundColor="#20bf6b" Pressed="Button_OpretProdukt_Pressed"/>
+                    </StackLayout>
                 </StackLayout>
-                <Label Text="Beskrivelse :" Margin="0,0,0,0" HorizontalOptions="CenterAndExpand" FontSize="18"/>
-                <Entry x:Name="productdesc" Text="" Margin="0,0,0,0" HorizontalOptions="CenterAndExpand" MaxLength="200" WidthRequest="300" HeightRequest="150" VerticalTextAlignment="Start" Placeholder="Beskrivelse" Keyboard="Default"/>
-                <StackLayout Orientation="Horizontal" Margin="0,0,0,50">
-                    <Label Text="Pris :" Margin="0,8,-85,0" HorizontalOptions="CenterAndExpand" FontSize="18"/>
-                    <Entry x:Name="productpris" Text="" Margin="0,0,10,10" HorizontalOptions="CenterAndExpand" MaxLength="15" WidthRequest="110" Placeholder="Pris" Keyboard="Numeric"/>    
-                </StackLayout>
-                <Button Text="Tilføj" BorderColor="Black" BorderWidth="1" HorizontalOptions="CenterAndExpand" WidthRequest="150" TextColor="Black" BackgroundColor="White" Pressed="Button_OpretProdukt_Pressed"/>
-            </StackLayout>
+            </Frame>
         </StackLayout>
     </ScrollView>
 </ContentPage>

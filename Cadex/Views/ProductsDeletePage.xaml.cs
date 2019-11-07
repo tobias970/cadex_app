@@ -18,7 +18,17 @@ namespace Cadex.Views
 
             this.key = key;
 
-            GenerateElements();
+            bool status = apimetoder.validatekey(key);
+            if (status)
+            {
+                GenerateElements();
+            }
+            else
+            {
+                DisplayAlert("Fejl", "Du er blevet logget ud", "OK");
+                AppSession.login = false;
+                Application.Current.MainPage = new Nav(key);
+            }
         }
         void Button_NavBack_Pressed(object sender, System.EventArgs e)
         {
@@ -68,6 +78,7 @@ namespace Cadex.Views
                 {
                     Text = "Slet",
                     BorderColor = Color.Black,
+                    BackgroundColor = Color.FromHex("#eb4d4b"),
                     BorderWidth = 1,
                     WidthRequest = 70,
                     TextColor = Color.Black,

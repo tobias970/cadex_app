@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Cadex.Views.NewsEditPage" BackgroundColor="CadetBlue">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Cadex.Views.NewsEditPage" BackgroundColor="#4a69bd">
     <ScrollView>
         <StackLayout>
-            <StackLayout Margin="10,30,0,0" HorizontalOptions="StartAndExpand">
-                <Button Text="Hjem" BorderColor="Black" BorderWidth="1" HorizontalOptions="CenterAndExpand" WidthRequest="60" TextColor="Black" Pressed="Button_NavBack_Pressed" BackgroundColor="White"/>
-            </StackLayout>
-            <StackLayout HorizontalOptions="CenterAndExpand" Margin="0,30,0,0">
-            <Label Text="Ret nyheder" FontSize="Title"/>
-            </StackLayout>
+            <Frame Margin="0,80,0,20">
+                <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+                    <Button Text="Hjem" BorderColor="Black" BorderWidth="1" HorizontalOptions="CenterAndExpand" WidthRequest="60" TextColor="Black" Pressed="Button_NavBack_Pressed" BackgroundColor="White"/>
+                    <Label Text="Ret nyheder" FontSize="Title" Margin="20,0,0,0" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                </StackLayout>
+            </Frame>
             <StackLayout x:Name="stack" Margin="30,30,30,30">
                 <!--
                 <Frame Margin="0,0,0,30">

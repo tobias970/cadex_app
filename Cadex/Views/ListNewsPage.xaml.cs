@@ -9,6 +9,7 @@ namespace Cadex.Views
     public partial class ListNewsPage : ContentPage
     {
         string key;
+        APIMethods apimetoder = new APIMethods();
 
         public ListNewsPage(string key)
         {
@@ -16,11 +17,20 @@ namespace Cadex.Views
 
             this.key = key;
 
-            GenerateElements();
+            bool status = apimetoder.validatekey(key);
+            if (status)
+            {
+                GenerateElements();
+            }
+            else
+            {
+                DisplayAlert("Fejl", "Du er blevet logget ud", "OK");
+                AppSession.login = false;
+                Application.Current.MainPage = new Nav(key);
+            }
         }
         public void GenerateElements()
         {
-            APIMethods apimetoder = new APIMethods();
             JObject result = (JObject)apimetoder.HentNyheder(key);
 
             int i = 0;
@@ -58,9 +68,12 @@ namespace Cadex.Views
                     FontSize = Device.GetNamedSize(NamedSize.Small, typeof(Label)),
                     HorizontalOptions = LayoutOptions.StartAndExpand,
                 };
+
+                DateTime utc = (DateTime)result["newsPosts"][i]["created_at"];
+                DateTime date = utc.ToLocalTime();
                 Label dato = new Label
                 {
-                    Text = (string)result["newsPosts"][i]["created_at"],
+                    Text = date.ToString("MM/dd/yyyy HH:mm:ss"),
                     FontSize = Device.GetNamedSize(NamedSize.Small, typeof(Label)),
                     HorizontalOptions = LayoutOptions.EndAndExpand,
                 };

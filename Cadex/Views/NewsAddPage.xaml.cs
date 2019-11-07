@@ -8,6 +8,7 @@ namespace Cadex.Views
     public partial class NewsAddPage : ContentPage
     {
         string key;
+        APIMethods apimetoder = new APIMethods();
 
         public NewsAddPage(string key)
         {
@@ -15,7 +16,6 @@ namespace Cadex.Views
 
             this.key = key;
 
-            Console.WriteLine(AppSession.login);
         }
         void Button_NavBack_Pressed(object sender, System.EventArgs e)
         {
@@ -23,26 +23,37 @@ namespace Cadex.Views
         }
         void Button_OpretNyhed_Pressed(object sender, System.EventArgs e)
         {
-            if (newstitle.Text != "" || newsdesc.Text != "")
+            bool status = apimetoder.validatekey(key);
+            if (status)
             {
-                APIMethods apimetoder = new APIMethods();
-                bool Stat = apimetoder.OpretNyhed(key, newstitle.Text, newsdesc.Text);
-                if (Stat)
+                if (newstitle.Text != "" && newsdesc.Text != "")
                 {
-                    DisplayAlert("Nyhed oprettet", "Nyheden er oprettet med succes", "OK");
-                    newstitle.Text = "";
-                    newsdesc.Text = "";
-                    fejl.IsVisible = false;
+
+                    bool Stat = apimetoder.OpretNyhed(key, newstitle.Text, newsdesc.Text);
+                    if (Stat)
+                    {
+                        DisplayAlert("Nyhed oprettet", "Nyheden er oprettet med succes", "OK");
+                        newstitle.Text = "";
+                        newsdesc.Text = "";
+                        fejl.IsVisible = false;
+                    }
+                    else
+                    {
+                        DisplayAlert("Fejl", "Nyheden blev ikke oprettet", "OK");
+                    }
                 }
                 else
                 {
-                    DisplayAlert("Fejl", "Nyheden blev ikke oprettet", "OK");
+                    fejl.IsVisible = true;
                 }
             }
             else
             {
-                fejl.IsVisible = true;
+                DisplayAlert("Fejl", "Du er blevet logget ud", "OK");
+                AppSession.login = false;
+                Application.Current.MainPage = new Nav(key);
             }
+
         }
     }
 }

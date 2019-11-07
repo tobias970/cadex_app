@@ -3,7 +3,7 @@
     <StackLayout>
         <ListView x:Name="MenuItemsListView" SeparatorVisibility="None" HasUnevenRows="true" ItemsSource="{Binding MenuItems}">
             <ListView.Header>
-                <StackLayout Padding="25" BackgroundColor="#009EDE">
+                <StackLayout Padding="25" BackgroundColor="#4a69bd">
                     <Image  Source="Assets/cadex_logo.png" VerticalOptions="Fill" HorizontalOptions="Fill" />
                 </StackLayout>
                     <!--<Grid BackgroundColor="#03A9F4">

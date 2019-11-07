@@ -1,12 +1,15 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:vm="clr-namespace:Cadex.ViewModels" x:Class="Cadex.Views.ListProductsPage" Title="{Binding Title}" BackgroundColor="SkyBlue">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:vm="clr-namespace:Cadex.ViewModels" x:Class="Cadex.Views.ListProductsPage" Title="{Binding Title}" BackgroundColor="#4a69bd">
     <ContentPage.BindingContext>
         <vm:ListProductsViewModel />
     </ContentPage.BindingContext>
     <ScrollView>
-        <StackLayout x:Name="stack" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-            <Label x:Name="test" Text="Biler til salg" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" FontSize="Title" Margin="0,30,0,30"/>
-            <!--
+        <StackLayout >
+            <Frame Margin="0,40,0,30">
+                <Label Text="Biler til salg" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" FontSize="Title"/>
+            </Frame>
+            <StackLayout x:Name="stack" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                <!--
             <Grid x:Name="gridlayout" HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand">
             <Frame OutlineColor="Black" HorizontalOptions="CenterAndExpand" Margin="10,0,10,30" HasShadow="False">
                 <StackLayout>
@@ -59,6 +62,7 @@
                 </StackLayout>
             </Frame>
             -->
+            </StackLayout>
         </StackLayout>
     </ScrollView>
 </ContentPage>
