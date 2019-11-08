@@ -17,7 +17,7 @@
                 </Frame>
 
                 <Frame Padding="0" HorizontalOptions="CenterAndExpand" WidthRequest="270" Margin="0,50,0,0">
-                    <Image  Source="Assets/cadex_virksomhed.jpg" WidthRequest="300" VerticalOptions="Fill" HorizontalOptions="Fill"/>
+                    <Image  Source="Assets/cadex_virksomhed.png" WidthRequest="300" VerticalOptions="Fill" HorizontalOptions="Fill"/>
                 </Frame>
                 <Frame OutlineColor="Black" HorizontalOptions="CenterAndExpand" Margin="0,50,0,0">
                     <Label Text="Kontaktoplysninger" />
