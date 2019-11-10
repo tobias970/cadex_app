@@ -6,23 +6,22 @@ namespace Cadex.Services
 {
     public class Validate
     {
+        //Metode der bruges til at validere tokenen, som den stadig er valid.
         public bool validatekey(string key)
         {
-            Console.WriteLine("TOKENVALID : " + key);
-
+            //Data der sendes til API'en
             var data = new
             {
                 token = key
             };
 
-            Console.WriteLine("DATA : " + data);
-
+            //Oprettelse af https request til API'en.
             APICustomRequest http = new APICustomRequest("https://api.cadex.dk/");
 
             //Sender data til følgende API endpoint.
             JObject json = http.SendData("auth/validate", data, Method.POST);
-            Console.WriteLine("VALID : " + json);
 
+            //Gemmer statussen fra API'en
             bool status = (bool)json.SelectToken("status");
 
             return status;

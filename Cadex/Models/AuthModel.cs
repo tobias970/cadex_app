@@ -9,6 +9,7 @@ namespace Cadex.Models
     {
         public JObject result;
 
+        //Metoden HentNyNoegle bruges til at kalde API'en for at få en token som bruges af andre API kald. 
         public string HentNyNoegle(string brugernavn, string kodeord)
         {
             string key = "";
@@ -26,16 +27,11 @@ namespace Cadex.Models
             //Sender data til følgende API endpoint.
             JObject json = http.SendData("auth/authenticate", data, Method.POST);
 
-            Console.WriteLine(json);
-
-            //Finder relevante json data og gemmer det i en variabel.
+            //Gemmer Json resultatet i en variabel.
             result = (JObject)json.SelectToken("result");
 
-            Console.WriteLine("result : " + result);
-
+            //Tager tokenen fra json objektet "result" og gemmer den i variablen "key". 
             key = (string)result["token"];
-
-            Console.WriteLine("key : " + key);
 
             //Retunere noeglen.
             return key;

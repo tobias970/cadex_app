@@ -9,9 +9,11 @@ namespace Cadex.Views
 {
     public partial class ListNewsPage : ContentPage
     {
-        string key;
+        //Instance af klasser og en reference til objected.
         ListNewsViewModel nyheder = new ListNewsViewModel();
         Validate valid = new Validate();
+
+        string key;
 
         public ListNewsPage(string key)
         {
@@ -19,7 +21,10 @@ namespace Cadex.Views
 
             this.key = key;
 
+            //Gemmer resultatet fra metoden validate.
             bool status = valid.validatekey(key);
+
+            //Hvis tokenen stadig er valid kalder den metoden "GenerateElements"
             if (status)
             {
                 GenerateElements();
@@ -27,19 +32,24 @@ namespace Cadex.Views
             else
             {
                 DisplayAlert("Fejl", "Du er blevet logget ud", "OK");
+
+                //Hvis tokenen ikke er valid mere så bliver du ført til startsiden
                 AppSession.login = false;
                 Application.Current.MainPage = new Nav(key);
             }
         }
+
+        //Metode der opretter xaml elementerne.
         public void GenerateElements()
         {
+            //Gemmer resultatet af metoden "HentNyheder" i et Json object
             JObject result = nyheder.HentNyheder(key);
 
             int i = 0;
+
+            //Looper igennem for hver nyhed der er i json objected
             foreach (var nyhederenkelt in result["newsPosts"])
             {
-                Console.WriteLine("Nyhed : " + i);
-
                 StackLayout tekster = new StackLayout
                 {
 

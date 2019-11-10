@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Cadex
 {
+    //Her bliver de de forskellige menu typer sat.
     public enum MenuItemType
     {
         Home,
@@ -17,6 +18,8 @@ namespace Cadex
         Logout,
         About
     }
+
+    //Her bliver typerne defineret.
     public class NavMenuItem
     {
         public MenuItemType Id { get; set; }

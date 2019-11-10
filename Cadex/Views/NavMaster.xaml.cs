@@ -37,9 +37,7 @@ namespace Cadex
                 MenuItemsListView.SelectedItem = null;
 
                 await RootPage.NavigateFromMenu(id);
-            };
-
-            
+            };   
         }
 
         private List<NavMenuItem> CreateMavMenu()
