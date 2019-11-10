@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Cadex.Services;
+using Cadex.ViewModels;
 using Newtonsoft.Json.Linq;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -18,8 +19,8 @@ namespace Cadex
         {
             InitializeComponent();
 
-            APIMethods apimetoder = new APIMethods();
-            var values = apimetoder.HentVirkInfo();
+            HomeViewModel companyinfo = new HomeViewModel();
+            var values = companyinfo.HentVirkInfo();
 
             infotitle.Text = values.Item1;
             infodesc.Text = values.Item2;

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Cadex.Services;
+using Cadex.ViewModels;
 using Xamarin.Forms;
 
 namespace Cadex.Views
@@ -8,7 +9,8 @@ namespace Cadex.Views
     public partial class NewsAddPage : ContentPage
     {
         string key;
-        APIMethods apimetoder = new APIMethods();
+        NewsAddViewModel nyheder = new NewsAddViewModel();
+        Validate valid = new Validate();
 
         public NewsAddPage(string key)
         {
@@ -23,13 +25,13 @@ namespace Cadex.Views
         }
         void Button_OpretNyhed_Pressed(object sender, System.EventArgs e)
         {
-            bool status = apimetoder.validatekey(key);
+            bool status = valid.validatekey(key);
             if (status)
             {
                 if (newstitle.Text != "" && newsdesc.Text != "")
                 {
 
-                    bool Stat = apimetoder.OpretNyhed(key, newstitle.Text, newsdesc.Text);
+                    bool Stat = nyheder.OpretNyhed(key, newstitle.Text, newsdesc.Text);
                     if (Stat)
                     {
                         DisplayAlert("Nyhed oprettet", "Nyheden er oprettet med succes", "OK");

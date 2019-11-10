@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Cadex.ViewModels
 {
-    public class NavMasterViewModel : INotifyPropertyChanged
+    public class NavMasterViewModel : INotifyPropertyChanged 
     {
         #region INotifyPropertyChanged Implementation
         public event PropertyChangedEventHandler PropertyChanged;

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Cadex.Services;
+using Cadex.ViewModels;
 using Xamarin.Forms;
 
 namespace Cadex.Views
@@ -17,13 +18,14 @@ namespace Cadex.Views
         void Login_Button_Clicked(object sender, System.EventArgs e)
         {
             //Oprettelse af objekt til klassen hvor API metoderne er i.
-            APIMethods apimetoder = new APIMethods();
+            LoginViewModel auth = new LoginViewModel();
+            Validate valid = new Validate();
 
             //Henter API token fra en metode i klassen "APIMethods" og sender brugernavn og kodeord til APIen.
-            key = apimetoder.HentNyNoegle(username.Text, password.Text);
+            key = auth.HentNoegle(username.Text, password.Text);
 
-
-            bool status = apimetoder.validatekey(key);
+            
+            bool status = valid.validatekey(key);
             Console.WriteLine("Den endelig status : " + status);
             
 
@@ -38,7 +40,7 @@ namespace Cadex.Views
                 AppSession.login = false;
                 fejl.IsVisible = true;
             }
-
+            
             //throw new NotImplementedException();
         }
 

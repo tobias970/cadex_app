@@ -1,5 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Cadex.Views.NewsAddPage" Title="Add News" BackgroundColor="#4a69bd">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:vm="clr-namespace:Cadex.ViewModels" x:Class="Cadex.Views.NewsAddPage" Title="{Binding Title}" BackgroundColor="#4a69bd" NavigationPage.HasNavigationBar="True">
+    <ContentPage.BindingContext>
+        <vm:NewsAddViewModel />
+    </ContentPage.BindingContext>
     <StackLayout>
         <StackLayout Margin="10,60,0,0" HorizontalOptions="StartAndExpand">
                 <Button Text="Hjem" BorderColor="Black" BorderWidth="1" HorizontalOptions="CenterAndExpand" WidthRequest="60" TextColor="Black" Pressed="Button_NavBack_Pressed" BackgroundColor="White"/>

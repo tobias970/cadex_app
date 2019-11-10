@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Cadex.Services;
+using Cadex.ViewModels;
 using Newtonsoft.Json.Linq;
 using Xamarin.Forms;
 
@@ -9,7 +10,9 @@ namespace Cadex.Views
     public partial class ProductsEditPage : ContentPage
     {
         string key;
-        APIMethods apimetoder = new APIMethods();
+        ProductsEditViewModel produkter = new ProductsEditViewModel();
+        ListProductsViewModel HentProdukter = new ListProductsViewModel();
+        Validate valid = new Validate();
 
         List<Button> editknapper = new List<Button>();
         List<Button> saveknapper = new List<Button>();
@@ -22,8 +25,8 @@ namespace Cadex.Views
             InitializeComponent();
 
             this.key = key;
-
-            bool status = apimetoder.validatekey(key);
+            
+            bool status = valid.validatekey(key);
             if (status)
             {
                 GenerateElements();
@@ -85,7 +88,7 @@ namespace Cadex.Views
             Entry beskriv = beskrivelseentry[knapperne];
             Entry pris = prisentry[knapperne];
 
-            bool Stat = apimetoder.UpdateProdukt(key, productid, titel.Text, beskriv.Text, pris.Text);
+            bool Stat = produkter.UpdateProdukt(key, productid, titel.Text, beskriv.Text, pris.Text);
 
             if (Stat)
             {
@@ -105,7 +108,7 @@ namespace Cadex.Views
 
         public void GenerateElements()
         {
-            JObject result = (JObject)apimetoder.HentProdukter();
+            JObject result = HentProdukter.HentProdukter();
 
             int i = 0;
 

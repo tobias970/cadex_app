@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using Cadex.Services;
+using Cadex.ViewModels;
 using Newtonsoft.Json.Linq;
 using Xamarin.Forms;
 
@@ -10,15 +11,17 @@ namespace Cadex.Views
     public partial class NewsDeletePage : ContentPage
     {
         string key;
-        APIMethods apimetoder = new APIMethods();
+        NewsDeleteViewModel nyheder = new NewsDeleteViewModel();
+        ListNewsViewModel hentnyheder = new ListNewsViewModel();
+        Validate valid = new Validate();
 
         public NewsDeletePage(string key)
         {
             InitializeComponent();
 
             this.key = key;
-
-            bool status = apimetoder.validatekey(key);
+            
+            bool status = valid.validatekey(key);
             if (status)
             {
                 GenerateElements();
@@ -46,7 +49,7 @@ namespace Cadex.Views
                 //Kald metode som sletter news
                 Button btn = (Button)sender;
                 
-                bool Stat =  apimetoder.SletNyhed(key, btn.ClassId);
+                bool Stat = nyheder.SletNyhed(key, btn.ClassId);
 
                 if (Stat)
                 {
@@ -64,7 +67,7 @@ namespace Cadex.Views
 
         public void GenerateElements()
         {
-            JObject result = (JObject)apimetoder.HentNyheder(key);
+            JObject result = hentnyheder.HentNyheder(key);
 
             int i = 0;
 

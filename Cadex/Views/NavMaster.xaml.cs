@@ -53,7 +53,7 @@ namespace Cadex
                     new NavMenuItem {Id = MenuItemType.News, Title="Nyheder" },
                     new NavMenuItem {Id = MenuItemType.ManProducts, Title="Håndtere Produkter" },
                     new NavMenuItem {Id = MenuItemType.ManNews, Title="Håndtere Nyheder" },
-                    new NavMenuItem {Id = MenuItemType.Logout, Title="Log ud" } //Lav logud side
+                    new NavMenuItem {Id = MenuItemType.Logout, Title="Log ud" }
                 };
             }
             else

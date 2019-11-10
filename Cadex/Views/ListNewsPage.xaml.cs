@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Cadex.Services;
+using Cadex.ViewModels;
 using Newtonsoft.Json.Linq;
 using Xamarin.Forms;
 
@@ -9,7 +10,8 @@ namespace Cadex.Views
     public partial class ListNewsPage : ContentPage
     {
         string key;
-        APIMethods apimetoder = new APIMethods();
+        ListNewsViewModel nyheder = new ListNewsViewModel();
+        Validate valid = new Validate();
 
         public ListNewsPage(string key)
         {
@@ -17,7 +19,7 @@ namespace Cadex.Views
 
             this.key = key;
 
-            bool status = apimetoder.validatekey(key);
+            bool status = valid.validatekey(key);
             if (status)
             {
                 GenerateElements();
@@ -31,7 +33,7 @@ namespace Cadex.Views
         }
         public void GenerateElements()
         {
-            JObject result = (JObject)apimetoder.HentNyheder(key);
+            JObject result = nyheder.HentNyheder(key);
 
             int i = 0;
             foreach (var nyhederenkelt in result["newsPosts"])

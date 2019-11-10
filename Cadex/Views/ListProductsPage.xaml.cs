@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using Cadex.Services;
+using Cadex.ViewModels;
 using Newtonsoft.Json.Linq;
 using Xamarin.Forms;
 
@@ -19,16 +20,16 @@ namespace Cadex.Views
 
         public void GenerateElements()
         {
-            APIMethods apimetoder = new APIMethods();
-            JObject result = (JObject)apimetoder.HentProdukter();
+            ListProductsViewModel produkter = new ListProductsViewModel();
+            JObject result = produkter.HentProdukter();
 
-            int antalprodukter = (int)result["productCount"];
+            //int antalprodukter = (int)result["productCount"];
 
             //string images = (string)result["products"][0]["images"][0]["image"];
             //Console.WriteLine("Billede : " + images);
 
             int i = 0;
-            while (i < antalprodukter)
+            foreach (var produkterenkelt in result["products"])
             {
                 Frame ramme = new Frame
                 {
@@ -55,11 +56,7 @@ namespace Cadex.Views
                     if (result["products"][i]["images"].HasValues)
                     {
                         string base64String = (string)result["products"][i]["images"][y]["image"];
-                        //Console.WriteLine("Billedenr : " + base64String);
-
-                        //Console.WriteLine("BASE64 : " + base64String);
                         byte[] Base64Stream = Convert.FromBase64String(base64String);
-                        //Console.WriteLine("BASE64S : " + Base64Stream);
 
                         Image billede = new Image
                         {

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Cadex.Services;
+using Cadex.ViewModels;
 using Xamarin.Forms;
 
 namespace Cadex.Views
@@ -8,7 +9,8 @@ namespace Cadex.Views
     public partial class ProductsAddPage : ContentPage
     {
         string key;
-        APIMethods apimetoder = new APIMethods();
+        ProductsAddViewModel produkter = new ProductsAddViewModel();
+        Validate valid = new Validate();
 
         public ProductsAddPage(string key)
         {
@@ -22,12 +24,12 @@ namespace Cadex.Views
         }
         void Button_OpretProdukt_Pressed(object sender, System.EventArgs e)
         {
-            bool status = apimetoder.validatekey(key);
+            bool status = valid.validatekey(key);
             if (status)
             {
                 if (producttitle.Text != "" && productdesc.Text != "" && productpris.Text != "")
                 {
-                    bool Stat = apimetoder.OpretProdukt(key, producttitle.Text, productdesc.Text, productpris.Text);
+                    bool Stat = produkter.OpretProdukt(key, producttitle.Text, productdesc.Text, productpris.Text);
                     if (Stat)
                     {
                         DisplayAlert("Produkt oprettet", "Produktet er oprettet med succes", "OK");
