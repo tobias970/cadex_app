@@ -15,8 +15,10 @@ namespace Cadex.Views
 
             this.key = key;
 
+            //Ændre AppSession til false.
             AppSession.login = false;
 
+            //Når du er logget ud bliver du sendt tilbage til startsiden.
             Application.Current.MainPage = new Nav(key);
         }
     }

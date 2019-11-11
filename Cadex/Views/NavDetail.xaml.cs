@@ -19,9 +19,13 @@ namespace Cadex
         {
             InitializeComponent();
 
+            //Instance af klassen og en reference til objected.
             HomeViewModel companyinfo = new HomeViewModel();
+
+            //Henter virksomhedsinfo fra "HentVirkInfo" metoden.
             var values = companyinfo.HentVirkInfo();
 
+            //Ændre teksten på labels ud fra værdierne fra metoden "HentVirkInfo".
             infotitle.Text = values.Item1;
             infodesc.Text = values.Item2;
             infotlf.Text = values.Item3;

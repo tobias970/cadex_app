@@ -10,20 +10,26 @@ namespace Cadex.Views
 {
     public partial class NewsDeletePage : ContentPage
     {
-        string key;
+        //Instance af klasser og en reference til objected.
         NewsDeleteViewModel nyheder = new NewsDeleteViewModel();
         ListNewsViewModel hentnyheder = new ListNewsViewModel();
         Validate valid = new Validate();
+
+        string key;
 
         public NewsDeletePage(string key)
         {
             InitializeComponent();
 
             this.key = key;
-            
+
+            //Kalder metoden "validatekey" og gemmer resultatet.
             bool status = valid.validatekey(key);
+
+            //Tjekker om statussen er true ellers bliver du sendt tilbage til startsiden.
             if (status)
             {
+                //Kalder metoden "GenerateElements" og laver xaml elementerne.
                 GenerateElements();
             }
             else
@@ -36,25 +42,29 @@ namespace Cadex.Views
 
         void Button_NavBack_Pressed(object sender, System.EventArgs e)
         {
+            //Navigere tilbage til startsiden.
             Application.Current.MainPage = new Nav(key);
         }
         
         async void OnAlertYesNoClicked(object sender, EventArgs e)
         {
+            //Opretter en DisplayAlert.
             bool answer = await DisplayAlert("Slet", "Er du sikker på du vil slette denne?", "Ja", "Nej");
-            Debug.WriteLine("Answer: " + answer);
 
+            //Tjekker om der bliver trykket ja i DesplayAlert'en.
             if (answer == true)
             {
-                //Kald metode som sletter news
                 Button btn = (Button)sender;
-                
+
+                //Kalder metoden "SletNyhed" og gemmer resultatet.
                 bool Stat = nyheder.SletNyhed(key, btn.ClassId);
 
+                //Tjekker om statussen er true altså om nyheden er slettet.
                 if (Stat)
                 {
                     await DisplayAlert("Nyhed slettet", "Nyheden er slettet", "OK");
 
+                    //Opdatere xaml'en. Sletter først alt i stack'en for derefter at generere xaml elementerne.
                     stack.Children.Clear();
                     GenerateElements();
                 }
@@ -65,12 +75,15 @@ namespace Cadex.Views
             }
         }
 
+        //Metode der generere xaml elementerne.
         public void GenerateElements()
         {
+            //Kalder metoden "HentNyheder" og gemmer det i en variabel.
             JObject result = hentnyheder.HentNyheder(key);
 
             int i = 0;
 
+            //Looper igennem for hver nyhed i der er i objected.
             foreach (var nyhederenkelt in result["newsPosts"])
             {
                 

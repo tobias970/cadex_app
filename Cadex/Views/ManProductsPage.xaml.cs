@@ -17,17 +17,23 @@ namespace Cadex.Views
         }
         void Button_AddProducts_Pressed(object sender, System.EventArgs e)
         {
+            //Navigere dig over til ADD products siden.
             Application.Current.MainPage = new ProductsAddPage(key);
+
             //throw new NotImplementedException();
         }
         void Button_EditProducts_Pressed(object sender, System.EventArgs e)
         {
+            //Navigere dig over til Edit products siden.
             Application.Current.MainPage = new ProductsEditPage(key);
+
             //throw new NotImplementedException();
         }
         void Button_DeleteProducts_Pressed(object sender, System.EventArgs e)
         {
+            //Navigere dig over til Delete products siden.
             Application.Current.MainPage = new ProductsDeletePage(key);
+
             //throw new NotImplementedException();
         }
     }

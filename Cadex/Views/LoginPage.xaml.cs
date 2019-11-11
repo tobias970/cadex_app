@@ -17,18 +17,17 @@ namespace Cadex.Views
 
         void Login_Button_Clicked(object sender, System.EventArgs e)
         {
-            //Oprettelse af objekt til klassen hvor API metoderne er i.
+            //Instance af klasser og en reference til objected.
             LoginViewModel auth = new LoginViewModel();
             Validate valid = new Validate();
 
-            //Henter API token fra en metode i klassen "APIMethods" og sender brugernavn og kodeord til APIen.
+            //Henter API token fra LoginViewModel og sender brugernavn og kodeord til APIen.
             key = auth.HentNoegle(username.Text, password.Text);
 
-            
+            //Validere tokenen for at se om det er en valid token.
             bool status = valid.validatekey(key);
-            Console.WriteLine("Den endelig status : " + status);
-            
 
+            //Tjekker om resultatet af validate er true, hvis ikke bliver du ikke logget ind.
             if (status)
             {
                 fejl.IsVisible = false;

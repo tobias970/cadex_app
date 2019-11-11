@@ -16,9 +16,13 @@
                         </StackLayout>
                         <Label Text="Beskrivelse :" Margin="0,0,0,0" HorizontalOptions="CenterAndExpand" FontSize="18"/>
                         <Entry x:Name="productdesc" Text="" Margin="0,0,0,0" HorizontalOptions="CenterAndExpand" MaxLength="200" WidthRequest="300" HeightRequest="150" VerticalTextAlignment="Start" Placeholder="Beskrivelse" Keyboard="Default"/>
-                        <StackLayout Orientation="Horizontal" Margin="0,0,0,50">
+                        <StackLayout Orientation="Horizontal" Margin="0,0,0,20">
                             <Label Text="Pris :" Margin="0,8,-85,0" HorizontalOptions="CenterAndExpand" FontSize="18"/>
                             <Entry x:Name="productpris" Text="" Margin="0,0,10,10" HorizontalOptions="CenterAndExpand" MaxLength="15" WidthRequest="110" Placeholder="Pris" Keyboard="Numeric"/>    
+                        </StackLayout>
+                        <StackLayout Margin="0,0,0,40">
+                            <Button Text="Vælg billede" BorderColor="Black" BorderWidth="1" HorizontalOptions="CenterAndExpand" WidthRequest="100" TextColor="Black" Pressed="GetPicture_Button"/>
+                            <Image x:Name="billedeinput" BackgroundColor="Gray"  WidthRequest="200" HeightRequest="130" HorizontalOptions="CenterAndExpand"/>
                         </StackLayout>
                         <Button Text="Tilføj" BorderColor="Black" BorderWidth="1" HorizontalOptions="CenterAndExpand" WidthRequest="150" TextColor="Black" BackgroundColor="#20bf6b" Pressed="Button_OpretProdukt_Pressed"/>
                     </StackLayout>

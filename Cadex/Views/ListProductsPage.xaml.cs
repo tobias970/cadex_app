@@ -14,21 +14,23 @@ namespace Cadex.Views
         {
             InitializeComponent();
 
+            //Kalder metode når klassen bliver lavet.
             GenerateElements();
            
         }
 
+        //Metode der generere xaml elementerne.
         public void GenerateElements()
         {
+            //Instance af klasser og en reference til objected.
             ListProductsViewModel produkter = new ListProductsViewModel();
+
+            //Gemmer resultatet fra HentProdukter i en variabel.
             JObject result = produkter.HentProdukter();
 
-            //int antalprodukter = (int)result["productCount"];
-
-            //string images = (string)result["products"][0]["images"][0]["image"];
-            //Console.WriteLine("Billede : " + images);
-
             int i = 0;
+
+            //Looper igennem for hver produkt der er i variablen.
             foreach (var produkterenkelt in result["products"])
             {
                 Frame ramme = new Frame

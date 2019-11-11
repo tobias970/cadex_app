@@ -17,17 +17,23 @@ namespace Cadex.Views
         }
         void Button_AddNews_Pressed(object sender, System.EventArgs e)
         {
+            //Navigere dig over til ADD news siden.
             Application.Current.MainPage = new NewsAddPage(key);
+
             //throw new NotImplementedException();
         }
         void Button_EditNews_Pressed(object sender, System.EventArgs e)
         {
+            //Navigere dig over til Edit news siden.
             Application.Current.MainPage = new NewsEditPage(key);
+
             //throw new NotImplementedException();
         }
         void Button_DeleteNews_Pressed(object sender, System.EventArgs e)
         {
+            //Navigere dig over til Delete news siden.
             Application.Current.MainPage = new NewsDeletePage(key);
+
             //throw new NotImplementedException();
         }
     }

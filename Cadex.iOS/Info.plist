@@ -34,5 +34,7 @@
 	<string>Cadex</string>
 	<key>XSAppIconAssets</key>
 	<string>Assets.xcassets/AppIcon.appiconset</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Upload picture</string>
 </dict>
 </plist>

@@ -16,8 +16,6 @@ namespace Cadex
         public MainPage()
         {
             InitializeComponent();
-
-            //Application.Current.MainPage = new Nav();
         }
     }
     

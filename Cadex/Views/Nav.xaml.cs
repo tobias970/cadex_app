@@ -15,6 +15,7 @@ namespace Cadex
     [DesignTimeVisible(true)]
     public partial class Nav : MasterDetailPage
     {
+        //Opretter liste over navigations sider.
         Dictionary<int, NavigationPage> MenuPages = new Dictionary<int, NavigationPage>();
         string key;
 
@@ -24,14 +25,17 @@ namespace Cadex
 
             this.key = key;
 
+            //Detailsiden dækker mastersiden.
             MasterBehavior = MasterBehavior.Popover;
 
+            //Sætter startsiden til Home.
             MenuPages.Add((int)MenuItemType.Home, (NavigationPage)Detail);
         }
 
-
+        //Sender dig over til en ny navigations side efter id'et på det menupunkt du har trykket på.
         public async Task NavigateFromMenu(int id)
         {
+            //Tjekker om id'et der er blevet trykket på findes i listen.
             if (!MenuPages.ContainsKey(id))
             {
                 switch (id)
@@ -59,9 +63,10 @@ namespace Cadex
                         break;
                 }
             }
-
+            //Sætter den trykkede side lig med newPage.
             var newPage = MenuPages[id];
 
+            //Sætter ny Detail side efter hvilket menupunkt der bliver trykket på.
             if (newPage != null)
             {
                 Detail = newPage;
