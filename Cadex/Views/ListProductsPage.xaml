@@ -8,6 +8,7 @@
             <Frame Margin="0,40,0,30">
                 <Label Text="Biler til salg" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" FontSize="Title"/>
             </Frame>
+            <Label x:Name="ingen" Text="Der er ingen produkter.." HorizontalOptions="CenterAndExpand" FontSize="Large" TextColor="White" IsVisible="false"/>
             <StackLayout x:Name="stack" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
                 <!--
             <Grid x:Name="gridlayout" HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand">

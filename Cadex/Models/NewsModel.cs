@@ -68,8 +68,6 @@ namespace Cadex.Models
             return status;
         }
 
-
-
         public bool SletNyhed(string token, string identity)
         {
             //Oprettelse af https request til API'en.

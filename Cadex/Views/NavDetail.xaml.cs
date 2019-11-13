@@ -14,7 +14,6 @@ namespace Cadex
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class NavDetail : ContentPage
     {
-        //public JObject produkter;
         public NavDetail()
         {
             InitializeComponent();

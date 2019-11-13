@@ -13,6 +13,7 @@ namespace Cadex.ViewModels
 
         public JObject HentNyheder(string key)
         {
+            //Kalder modellen med data og returnere til view'et.
             NewsModel nyheder = new NewsModel();
             JObject result = (JObject)nyheder.HentNyheder(key);
 

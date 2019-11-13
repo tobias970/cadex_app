@@ -12,6 +12,7 @@ namespace Cadex.ViewModels
 
         public (string, string, string, string) HentVirkInfo()
         {
+            //Kalder modellen og returnere data til view'et.
             CompanyModel companyinfo = new CompanyModel();
             var values = companyinfo.HentVirkInfo();
 

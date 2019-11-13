@@ -126,7 +126,7 @@ namespace Cadex.Views
 
             int i = 0;
 
-            //Looper igennem for hver nyhed i der er i objected.
+            //Looper igennem for hver nyhed "i" der er i objected.
             foreach (var nyhederenkelt in result["newsPosts"])
             {
                 //Opretter variabler med nyhedsnr og handling og id for nyheden.

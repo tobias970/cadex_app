@@ -13,6 +13,7 @@ namespace Cadex.ViewModels
 
         public string HentNoegle(string brugernavn, string kodeord)
         {
+            //Kalder modellen med data og returnere en nøgle til view'et.
             AuthModel auth = new AuthModel();
             string result = auth.HentNyNoegle(brugernavn, kodeord);
 

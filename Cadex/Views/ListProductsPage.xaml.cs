@@ -29,10 +29,15 @@ namespace Cadex.Views
             JObject result = produkter.HentProdukter();
 
             int i = 0;
+            bool produkt = false;
 
             //Looper igennem for hver produkt der er i variablen.
             foreach (var produkterenkelt in result["products"])
             {
+                //Hvis der er produkter skal den ikke vise "Ingen produkter".
+                ingen.IsVisible = false;
+                produkt = true;
+
                 Frame ramme = new Frame
                 {
                     HorizontalOptions = LayoutOptions.CenterAndExpand,
@@ -130,6 +135,11 @@ namespace Cadex.Views
                 stack.Children.Add(ramme);
 
                 i++;
+            }
+
+            if (produkt == false)
+            {
+                ingen.IsVisible = true;
             }
         }
     }

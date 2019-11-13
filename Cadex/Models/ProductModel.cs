@@ -25,7 +25,7 @@ namespace Cadex.Models
         }
 
         //Metode der bruges til at oprette produkter.
-        public bool OpretProdukt(string token, string overskrift, string beskrivelse, string pris)
+        public (bool, int) OpretProdukt(string token, string overskrift, string beskrivelse, string pris)
         {
             //Data der sendes til API'en
             var data = new
@@ -43,8 +43,14 @@ namespace Cadex.Models
 
             //Gemmer statussen fra API'en
             bool status = (bool)json.SelectToken("status");
-            
-            return status;
+
+            //Gemmer API resultatet i et json object.
+            result = (JObject)json.SelectToken("result");
+
+            //Gemmer id'et for produktet
+            int produktid = (int)result["id"];
+
+            return (status, produktid);
         }
 
         //Metode der bruges til at updatere produkter.
@@ -82,6 +88,26 @@ namespace Cadex.Models
             //Gemmer statussen fra API'en
             bool status = (bool)json.SelectToken("status");
             
+            return status;
+        }
+
+        public bool UploadBillede(string token, int produktid, string billede)
+        {
+            //Data der sendes til API'en
+            var data = new
+            {
+                picture = billede
+            };
+
+            //Oprettelse af https request til API'en
+            APICustomRequest http = new APICustomRequest("https://api.cadex.dk/");
+
+            //Sender data til følgende API endpoint.
+            JObject json = http.SendData("product/uploadImage/" + produktid + "/true", data, Method.POST, token);
+
+            //Gemmer statussen fra API'en
+            bool status = (bool)json.SelectToken("status");
+
             return status;
         }
     }

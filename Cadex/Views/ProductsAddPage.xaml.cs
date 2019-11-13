@@ -17,6 +17,8 @@ namespace Cadex.Views
         Validate valid = new Validate();
 
         string key;
+        byte[] billedebyte;
+        string stringbillede;
 
         public ProductsAddPage(string key)
         {
@@ -32,6 +34,7 @@ namespace Cadex.Views
 
         void GetPicture_Button(object sender, System.EventArgs e)
         {
+            //Kalder metode der som bruges til at vælge billede fra galleriet.
             Getbillede();
         }
         private async void Getbillede()
@@ -43,8 +46,6 @@ namespace Cadex.Views
                 //Vælg photo
                 var file = await media.PickPhotoAsync();
 
-                Console.WriteLine("BILLEDE : " + file);
-
                 // Venter til filen er skrevet
                 while (File.ReadAllBytes(file.Path).Length == 0)
                 {
@@ -52,8 +53,13 @@ namespace Cadex.Views
                 }
 
                 //Convertere billedet fra Byte[].
+                //billedebyte = File.ReadAllBytes(file.Path);
+
+                //Convertere billede fra Byte[] til Base64.
+                stringbillede = Convert.ToBase64String(File.ReadAllBytes(file.Path));
+
+                //Indsætter billedet i imageviewet.
                 billedeinput.Source = ImageSource.FromStream(() => new MemoryStream(File.ReadAllBytes(file.Path)));
-                Console.WriteLine("DER ER INDSAT ET BILLEDE");
             }
             catch (Exception e)
             {
@@ -64,20 +70,48 @@ namespace Cadex.Views
         void Button_OpretProdukt_Pressed(object sender, System.EventArgs e)
         {
             bool status = valid.validatekey(key);
+
+            //Tjekker om key er valid.
             if (status)
             {
+                //Tjekker om felterne er tomme.
                 if (producttitle.Text != "" && productdesc.Text != "" && productpris.Text != "")
                 {
-                    bool Stat = produkter.OpretProdukt(key, producttitle.Text, productdesc.Text, productpris.Text);
+                    //Opretter produkt med indholdet fra felterne.
+                    var values = produkter.OpretProdukt(key, producttitle.Text, productdesc.Text, productpris.Text);
+
+                    bool Stat = values.Item1;
+                    int produktid = values.Item2;
+
+                    //Tjekker om produktet blev oprettet med succes.
                     if (Stat)
                     {
-                        DisplayAlert("Produkt oprettet", "Produktet er oprettet med succes", "OK");
+                        //Tjekker om der er valgt et billede.
+                        if (stringbillede != "")
+                        {
+                            //Uploader billede det valgte billede.
+                            bool billedestatus = produkter.UploadBillede(key, produktid, stringbillede);
 
-                        producttitle.Text = "";
-                        productdesc.Text = "";
-                        productpris.Text = "";
+                            //Tjekker om billedet blev uploadet.
+                            if (billedestatus)
+                            {
+                                DisplayAlert("Produkt oprettet", "Produktet er oprettet med succes", "OK");
 
-                        fejl.IsVisible = false;
+                                producttitle.Text = "";
+                                productdesc.Text = "";
+                                productpris.Text = "";
+
+                                fejl.IsVisible = false;
+                            }
+                            else
+                            {
+                                DisplayAlert("Fejl", "Produktet blev ikke oprettet", "OK");
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("Der er intet billede..");
+                        }                        
                     }
                     else
                     {

@@ -46,10 +46,15 @@ namespace Cadex.Views
             JObject result = nyheder.HentNyheder(key);
 
             int i = 0;
+            bool nyhed = false;
 
             //Looper igennem for hver nyhed der er i json objected
             foreach (var nyhederenkelt in result["newsPosts"])
             {
+                //Hvis der er nyheder skal den ikke vise "Ingen nyheder".
+                ingen.IsVisible = false;
+                nyhed = true;
+
                 StackLayout tekster = new StackLayout
                 {
 
@@ -106,6 +111,10 @@ namespace Cadex.Views
                 stack.Children.Add(ramme);
 
                 i++;
+            }
+            if (nyhed == false)
+            {
+                ingen.IsVisible = true;
             }
         }
     }

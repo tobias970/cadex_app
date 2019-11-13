@@ -7,20 +7,22 @@ namespace Cadex.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
-        bool isBusy = false;
+        /*bool isBusy = false;
         public bool IsBusy
         {
             get { return isBusy; }
             set { SetProperty(ref isBusy, value); }
-        }
-        
+        }*/
+
+        //Henter title og sætter property.
         string title = string.Empty;
         public string Title
         {
             get { return title; }
             set { SetProperty(ref title, value); }
         }
-        
+
+        //Sætter ny property når der er sket en ændring.
         protected bool SetProperty<T>(ref T backingStore, T value,
             [CallerMemberName]string propertyName = "",
             Action onChanged = null)
@@ -34,6 +36,7 @@ namespace Cadex.ViewModels
             return true;
         }
 
+        //Tjekker om der er sket en ændring.
         #region INotifyPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = "")

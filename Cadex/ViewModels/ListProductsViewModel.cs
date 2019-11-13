@@ -13,6 +13,7 @@ namespace Cadex.ViewModels
 
         public JObject HentProdukter()
         {
+            //Kalder modellen og returnere til view'et.
             ProductModel produkter = new ProductModel();
             JObject result = (JObject)produkter.HentProdukter();
 

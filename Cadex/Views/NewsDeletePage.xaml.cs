@@ -54,6 +54,7 @@ namespace Cadex.Views
             //Tjekker om der bliver trykket ja i DesplayAlert'en.
             if (answer == true)
             {
+                //Henter knappen der er blevet trykket på.
                 Button btn = (Button)sender;
 
                 //Kalder metoden "SletNyhed" og gemmer resultatet.

@@ -9,26 +9,32 @@ namespace Cadex.Views
 {
     public partial class ProductsEditPage : ContentPage
     {
-        string key;
         ProductsEditViewModel produkter = new ProductsEditViewModel();
         ListProductsViewModel HentProdukter = new ListProductsViewModel();
         Validate valid = new Validate();
 
+        //Opretter list'er med xaml elementer i.
         List<Button> editknapper = new List<Button>();
         List<Button> saveknapper = new List<Button>();
         List<Entry> titlerentry = new List<Entry>();
         List<Entry> beskrivelseentry = new List<Entry>();
         List<Entry> prisentry = new List<Entry>();
 
+        string key;
+
         public ProductsEditPage(string key)
         {
             InitializeComponent();
 
             this.key = key;
-            
+
+            //Kalder metoden "validatekey" og gemmer resultatet.
             bool status = valid.validatekey(key);
+
+            //Tjekker om statussen er true ellers bliver du sendt tilbage til startsiden.
             if (status)
             {
+                //Kalder metoden "GenerateElements" og laver xaml elementerne.
                 GenerateElements();
             }
             else
@@ -40,26 +46,31 @@ namespace Cadex.Views
         }
         void Button_NavBack_Pressed(object sender, System.EventArgs e)
         {
+            //Sender tilbage til startsiden.
             Application.Current.MainPage = new Nav(key);
         }
 
         void Button_edit_pressed(object sender, EventArgs e)
         {
+            //Henter knappen der er blevet trykket på.
             Button btn = (Button)sender;
 
-            Console.WriteLine("EDIT : " + btn.ClassId);
+            //Gemmer id'et for knappen.
             string knappen = btn.ClassId;
+
+            //Finder position "edit" i variablen.
             int start = knappen.IndexOf("edit", StringComparison.Ordinal);
-            Console.WriteLine("START nr : " + start);
 
+            //Gemmer pladsen i array'et.
             int knapperne = Convert.ToInt32(knappen.Substring(0, start));
-            Console.WriteLine("KNAPPERNE : " + knapperne);
 
+            //Bruger variablen til at finde de rigtige elementer.
             Button save = saveknapper[knapperne];
             Entry titel = titlerentry[knapperne];
             Entry beskriv = beskrivelseentry[knapperne];
             Entry pris = prisentry[knapperne];
 
+            //Ændre status for xaml elementerne.
             titel.IsEnabled = true;
             beskriv.IsEnabled = true;
             pris.IsEnabled = true;
@@ -70,26 +81,31 @@ namespace Cadex.Views
 
         void Button_save_pressed(object sender, EventArgs e)
         {
+            //Henter knappen der er blevet trykket på.
             Button btn = (Button)sender;
 
-            Console.WriteLine("SAVE : " + btn.ClassId);
-
+            //Gemmer id'et for knappen.
             string knappen = btn.ClassId;
+
+            //Finder position "edit" i variablen.
             int start = knappen.IndexOf("save", StringComparison.Ordinal);
-            //Console.WriteLine("START nr : " + start);
 
+            //Gemmer pladsen i array'et.
             int knapperne = Convert.ToInt32(knappen.Substring(0, start));
-            //Console.WriteLine("KNAPPERNE : " + knapperne);
-            int productid = Convert.ToInt32(knappen.Substring(start + 4));
-            Console.WriteLine("PRODUCTID : " + productid);
 
+            //Gemmer id'et for produktet.
+            int productid = Convert.ToInt32(knappen.Substring(start + 4));
+
+            //Bruger variablen til at finde de rigtige elementer.
             Button edit = editknapper[knapperne];
             Entry titel = titlerentry[knapperne];
             Entry beskriv = beskrivelseentry[knapperne];
             Entry pris = prisentry[knapperne];
 
+            //Kalder metoden "UpdateProdukt" og gemmer resultatet.
             bool Stat = produkter.UpdateProdukt(key, productid, titel.Text, beskriv.Text, pris.Text);
 
+            //Tjekker om statussen er true altså om produktet er slettet.
             if (Stat)
             {
                 DisplayAlert("Produkt opdateret", "Produktet er opdateret", "OK");
@@ -106,14 +122,18 @@ namespace Cadex.Views
             }
         }
 
+        //Metode der generere xaml elementerne.
         public void GenerateElements()
         {
+            //Kalder metoden "HentProdukter" og gemmer det i en variabel.
             JObject result = HentProdukter.HentProdukter();
 
             int i = 0;
 
+            //Looper igennem for hver produkt "i" der er i objected.
             foreach (var produkterenkelt in result["products"])
             {
+                //Opretter variabler med nyhedsnr og handling og id for produktet.
                 string editknap = i + "edit" + (string)result["products"][i]["id"];
                 string saveknap = i + "save" + (string)result["products"][i]["id"];
 

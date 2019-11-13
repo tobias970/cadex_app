@@ -7,6 +7,7 @@ namespace Cadex.ViewModels
     {
         public bool SletNyhed(string token, string identity)
         {
+            //Kalder modellen med data og sletter nyheden og returnere det til view'et.
             NewsModel nyheder = new NewsModel();
             bool Stat = nyheder.SletNyhed(token, identity);
 
