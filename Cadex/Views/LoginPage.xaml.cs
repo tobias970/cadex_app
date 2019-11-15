@@ -8,6 +8,10 @@ namespace Cadex.Views
 {
     public partial class LoginPage : ContentPage
     {
+        //Instance af klasser og en reference til objected.
+        LoginViewModel auth = new LoginViewModel();
+        Validate valid = new Validate();
+
         string key;
 
         public LoginPage()
@@ -17,10 +21,6 @@ namespace Cadex.Views
 
         void Login_Button_Clicked(object sender, System.EventArgs e)
         {
-            //Instance af klasser og en reference til objected.
-            LoginViewModel auth = new LoginViewModel();
-            Validate valid = new Validate();
-
             //Henter API token fra LoginViewModel og sender brugernavn og kodeord til APIen.
             key = auth.HentNoegle(username.Text, password.Text);
 

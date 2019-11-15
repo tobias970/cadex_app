@@ -10,6 +10,9 @@ namespace Cadex.Views
 {
     public partial class ListProductsPage : ContentPage
     {
+        //Instance af klasser og en reference til objected.
+        ListProductsViewModel produkter = new ListProductsViewModel();
+
         public ListProductsPage()
         {
             InitializeComponent();
@@ -22,9 +25,6 @@ namespace Cadex.Views
         //Metode der generere xaml elementerne.
         public void GenerateElements()
         {
-            //Instance af klasser og en reference til objected.
-            ListProductsViewModel produkter = new ListProductsViewModel();
-
             //Gemmer resultatet fra HentProdukter i en variabel.
             JObject result = produkter.HentProdukter();
 

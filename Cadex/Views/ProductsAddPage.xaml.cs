@@ -17,7 +17,6 @@ namespace Cadex.Views
         Validate valid = new Validate();
 
         string key;
-        byte[] billedebyte;
         string stringbillede;
 
         public ProductsAddPage(string key)

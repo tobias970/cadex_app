@@ -14,12 +14,12 @@ namespace Cadex
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class NavDetail : ContentPage
     {
+        //Instance af klassen og en reference til objected.
+        HomeViewModel companyinfo = new HomeViewModel();
+
         public NavDetail()
         {
             InitializeComponent();
-
-            //Instance af klassen og en reference til objected.
-            HomeViewModel companyinfo = new HomeViewModel();
 
             //Henter virksomhedsinfo fra "HentVirkInfo" metoden.
             var values = companyinfo.HentVirkInfo();

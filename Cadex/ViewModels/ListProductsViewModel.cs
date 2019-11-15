@@ -6,6 +6,8 @@ namespace Cadex.ViewModels
 {
     public class ListProductsViewModel : BaseViewModel
     {
+        ProductModel produkter = new ProductModel();
+
         public ListProductsViewModel()
         {
             Title = "Produkter";
@@ -14,7 +16,6 @@ namespace Cadex.ViewModels
         public JObject HentProdukter()
         {
             //Kalder modellen og returnere til view'et.
-            ProductModel produkter = new ProductModel();
             JObject result = (JObject)produkter.HentProdukter();
 
             return result;

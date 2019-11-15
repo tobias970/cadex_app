@@ -5,6 +5,8 @@ namespace Cadex.ViewModels
 {
     public class HomeViewModel : BaseViewModel
     {
+        CompanyModel companyinfo = new CompanyModel();
+
         public HomeViewModel()
         {
             Title = "Hjem";
@@ -13,7 +15,6 @@ namespace Cadex.ViewModels
         public (string, string, string, string) HentVirkInfo()
         {
             //Kalder modellen og returnere data til view'et.
-            CompanyModel companyinfo = new CompanyModel();
             var values = companyinfo.HentVirkInfo();
 
             string title = values.Item1;

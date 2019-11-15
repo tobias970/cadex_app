@@ -10,7 +10,7 @@ namespace Cadex.Views
     public partial class ProductsEditPage : ContentPage
     {
         ProductsEditViewModel produkter = new ProductsEditViewModel();
-        ListProductsViewModel HentProdukter = new ListProductsViewModel();
+        ListProductsViewModel hentprodukter = new ListProductsViewModel();
         Validate valid = new Validate();
 
         //Opretter list'er med xaml elementer i.
@@ -126,7 +126,7 @@ namespace Cadex.Views
         public void GenerateElements()
         {
             //Kalder metoden "HentProdukter" og gemmer det i en variabel.
-            JObject result = HentProdukter.HentProdukter();
+            JObject result = hentprodukter.HentProdukter();
 
             int i = 0;
 
