@@ -83,11 +83,15 @@ namespace Cadex.Views
             JObject result = hentnyheder.HentNyheder(key);
 
             int i = 0;
+            bool nyhed = false;
 
             //Looper igennem for hver nyhed i der er i objected.
             foreach (var nyhederenkelt in result["newsPosts"])
             {
-                
+                //Hvis der er nyheder skal den ikke vise "Ingen nyheder".
+                ingen.IsVisible = false;
+                nyhed = true;
+
                 StackLayout alt = new StackLayout()
                 {
                     Orientation = StackOrientation.Horizontal,
@@ -130,6 +134,10 @@ namespace Cadex.Views
                 stack.Children.Add(ramme);
 
                 i++;
+            }
+            if (nyhed == false)
+            {
+                ingen.IsVisible = true;
             }
         }
     }

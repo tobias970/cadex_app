@@ -21,6 +21,18 @@ namespace Cadex.Services
             //Sender data til følgende API endpoint.
             JObject json = http.SendData("auth/validate", data, Method.POST);
 
+            JArray afdelinger = (JArray)json["result"]["securityGroups"];
+
+            foreach (string item in afdelinger)
+            {
+                string afdeling = item;
+
+                if (afdeling == "IT_SG")
+                {
+                    AppSession.IT = true;
+                }
+            }
+
             //Gemmer statussen fra API'en
             bool status = (bool)json.SelectToken("status");
 

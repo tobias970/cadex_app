@@ -44,16 +44,16 @@ namespace Cadex.Views
                     HasShadow = false,
                     BorderColor = Color.Black,
                     Margin = new Thickness (10,0,10,30),
-                    WidthRequest = 300,
+                    WidthRequest = 300
                 };
                 StackLayout Alt = new StackLayout
                 {
-
+                    
                 };
                 
                 StackLayout billeder = new StackLayout
                 {
-                    Orientation = StackOrientation.Horizontal,
+                    Orientation = StackOrientation.Horizontal
                 };
 
                 //Indsætter alle billederne for hver produkt i stacklayoutet ovenfor. 
@@ -68,7 +68,7 @@ namespace Cadex.Views
                         Image billede = new Image
                         {
                             Source = ImageSource.FromStream(() => new MemoryStream(Base64Stream)),
-                            WidthRequest = 500,
+                            WidthRequest = 300,
                             HeightRequest = 200
                         };
 
@@ -84,7 +84,7 @@ namespace Cadex.Views
                     {
                         Source = "Assets/billedesenere.png",
                         WidthRequest = 500,
-                        HeightRequest = 200
+                        HeightRequest = 200,
                     };
 
                     billeder.Children.Add(billede);
@@ -93,7 +93,7 @@ namespace Cadex.Views
                 ScrollView Scroller = new ScrollView
                 {
                     Orientation = ScrollOrientation.Horizontal,
-                    Content = billeder,
+                    Content = billeder
                 };
 
                 Label titel = new Label

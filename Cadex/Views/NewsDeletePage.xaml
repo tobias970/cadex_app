@@ -8,6 +8,7 @@
                     <Label Text="Slet nyheder" FontSize="Title" Margin="20,0,0,0" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
                 </StackLayout>
             </Frame>
+            <Label x:Name="ingen" Text="Der er ingen nyheder.." HorizontalOptions="CenterAndExpand" FontSize="Large" TextColor="White" IsVisible="false"/>
             <StackLayout x:Name="stack" Margin="10,40,10,0">
                 <!--
                 <Frame Padding="10" HorizontalOptions="CenterAndExpand" WidthRequest="260" Margin="0,5,0,0" HasShadow="False" OutlineColor="Black">

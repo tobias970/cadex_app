@@ -6,5 +6,7 @@ namespace Cadex.Services
     {
         //Sætter Appsession til false
         public static bool login = false;
+
+        public static bool IT = false;
     }
 }

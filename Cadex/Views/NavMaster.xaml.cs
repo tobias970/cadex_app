@@ -53,27 +53,28 @@ namespace Cadex
         //Opretter menuen med titlerne der skal stå på menuen.
         private List<NavMenuItem> CreateMavMenu()
         {
+            menuItems = new List<NavMenuItem>
+            {
+                    new NavMenuItem {Id = MenuItemType.Home, Title="Hjem" },
+                    new NavMenuItem {Id = MenuItemType.Products, Title="Produkter" },
+            };
+
             //Tjekker om du er logget ind ellers får du ikke alle menupunkterne.
-            if (AppSession.login)
+            if (AppSession.login && AppSession.IT)
             {
-                menuItems = new List<NavMenuItem>
-                {
-                    new NavMenuItem {Id = MenuItemType.Home, Title="Hjem" },
-                    new NavMenuItem {Id = MenuItemType.Products, Title="Produkter" },
-                    new NavMenuItem {Id = MenuItemType.News, Title="Nyheder" },
-                    new NavMenuItem {Id = MenuItemType.ManProducts, Title="Håndtere Produkter" },
-                    new NavMenuItem {Id = MenuItemType.ManNews, Title="Håndtere Nyheder" },
-                    new NavMenuItem {Id = MenuItemType.Logout, Title="Log ud" }
-                };
+                menuItems.Add(new NavMenuItem() {Id = MenuItemType.News, Title = "Nyheder" });
+                menuItems.Add(new NavMenuItem() {Id = MenuItemType.ManProducts, Title = "Håndtere Produkter" });
+                menuItems.Add(new NavMenuItem() {Id = MenuItemType.ManNews, Title = "Håndtere Nyheder" });
+                menuItems.Add(new NavMenuItem(){Id = MenuItemType.Logout, Title = "Log ud"});
             }
-            else
+            if (AppSession.login && AppSession.IT == false)
             {
-                menuItems = new List<NavMenuItem>
-                {
-                    new NavMenuItem {Id = MenuItemType.Home, Title="Hjem" },
-                    new NavMenuItem {Id = MenuItemType.Products, Title="Produkter" },
-                    new NavMenuItem {Id = MenuItemType.Login, Title="Log ind" }
-                };
+                menuItems.Add(new NavMenuItem() {Id = MenuItemType.News, Title = "Nyheder" });
+                menuItems.Add(new NavMenuItem() {Id = MenuItemType.Logout, Title = "Log ud" });
+            }
+            if (AppSession.login == false && AppSession.IT == false)
+            {
+                menuItems.Add(new NavMenuItem() { Id = MenuItemType.Login, Title = "Log ind" });
             }
 
             return menuItems;

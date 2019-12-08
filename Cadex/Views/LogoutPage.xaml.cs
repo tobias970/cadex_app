@@ -17,6 +17,7 @@ namespace Cadex.Views
 
             //Ændre AppSession til false.
             AppSession.login = false;
+            AppSession.IT = false;
 
             //Når du er logget ud bliver du sendt tilbage til startsiden.
             Application.Current.MainPage = new Nav(key);

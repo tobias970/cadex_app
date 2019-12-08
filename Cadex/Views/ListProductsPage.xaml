@@ -4,7 +4,7 @@
         <vm:ListProductsViewModel />
     </ContentPage.BindingContext>
     <ScrollView>
-        <StackLayout >
+        <StackLayout>
             <Frame Margin="0,40,0,30">
                 <Label Text="Biler til salg" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" FontSize="Title"/>
             </Frame>
