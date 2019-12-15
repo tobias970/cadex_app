@@ -17,7 +17,7 @@ namespace Cadex.Views
         Validate valid = new Validate();
 
         string key;
-        string stringbillede;
+        string stringbillede = "";
 
         public ProductsAddPage(string key)
         {
@@ -63,6 +63,7 @@ namespace Cadex.Views
             catch (Exception e)
             {
                 Debug.WriteLine("Exception Caught: Der er ikke valgt noget billede");
+                Console.WriteLine(e);
             }
         }
 
@@ -99,6 +100,7 @@ namespace Cadex.Views
                                 producttitle.Text = "";
                                 productdesc.Text = "";
                                 productpris.Text = "";
+                                billedeinput.Source = null;
 
                                 fejl.IsVisible = false;
                             }
@@ -109,6 +111,7 @@ namespace Cadex.Views
                         }
                         else
                         {
+                            DisplayAlert("Produkt oprettet uden billede", "Produktet er oprettet med succes", "OK");
                             Console.WriteLine("Der er intet billede..");
                         }                        
                     }

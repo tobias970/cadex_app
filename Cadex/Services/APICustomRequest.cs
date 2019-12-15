@@ -18,9 +18,8 @@ namespace Cadex.Services
             client = new RestClient(baseURL);
         }
 
-        /*
-         * SendData() bruges til at sende data over RestRequest.
-         */
+        
+        //SendData() bruges til at sende data over RestRequest.
         public JObject SendData(string endpoint, Object obj, Method method)
         {
             // Ignorere SSL self signed certifikat.
