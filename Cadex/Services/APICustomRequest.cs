@@ -9,9 +9,9 @@ namespace Cadex.Services
     {
         private RestClient client;
 
-        /*
-         * CustomRequest() bruges til at sætte vores RestClient client  
-         */
+        
+        //APICustomRequest() bruges til at sætte vores RestClient client  
+        
         public APICustomRequest(string baseURL)
         {
             // Opretter RestClient

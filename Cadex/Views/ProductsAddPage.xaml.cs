@@ -31,12 +31,12 @@ namespace Cadex.Views
             Application.Current.MainPage = new Nav(key);
         }
 
-        void GetPicture_Button(object sender, System.EventArgs e)
+        async void GetPicture_ButtonAsync(object sender, System.EventArgs e)
         {
             //Kalder metode der som bruges til at vælge billede fra galleriet.
-            Getbillede();
+            await Getbillede();
         }
-        private async void Getbillede()
+        private async Task Getbillede()
         {
             try
             {
